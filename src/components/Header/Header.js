@@ -1,4 +1,5 @@
 import React from 'react';
+import HeaderNav from './HeaderNav/HeaderNav';
 
 //styles
 import './HeaderStyles';
@@ -10,6 +11,7 @@ import logo from "./replate-icon.PNG";
 export default function Header () {
   return (
     <div className= 'headerCont'>
+
       <div>
         <img src={logo} alt="replate icon"/>
       </div>
