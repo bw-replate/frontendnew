@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 //styles
 import './HeaderStyles';
 
