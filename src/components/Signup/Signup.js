@@ -25,7 +25,9 @@ const Registration = ({values, errors, touched, status }) => {
     }, [status])
     return (
         <div className="user-form">
+
           {console.log('user: ', values.user)}
+
             <Form>
                 <label htmlFor="username">
                     Name

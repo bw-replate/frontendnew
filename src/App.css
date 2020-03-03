@@ -34,3 +34,11 @@ nav {
 .nav-links a:hover {
   border-bottom: 1px solid #1c5d76;
 }
+
+.mainHeading{
+  text-align: center;
+  font-size: 10rem;
+}
+
+
+
