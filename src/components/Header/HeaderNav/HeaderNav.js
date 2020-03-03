@@ -8,11 +8,11 @@ const HeaderNav = () => {
   return (
     <>
       <nav>
-        <ul>
-          <li><NavLink to='/'>Nav item</NavLink></li>
-          <li><NavLink to='/'>Nav item</NavLink></li>
-          <li><NavLink to='/'>Nav item</NavLink></li>
-        </ul>
+        <div className="nav-links">
+          <NavLink to='/'>Nav item</NavLink>
+          <NavLink to='/'>Nav item</NavLink>
+          <NavLink to='/'>Nav item</NavLink>
+        </div>
       </nav>
     </>
   )
