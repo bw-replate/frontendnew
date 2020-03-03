@@ -4,13 +4,20 @@ import HeaderNav from './HeaderNav/HeaderNav';
 //styles
 import './HeaderStyles';
 
-export const Header = () => {
+//imports
+import HeaderNav from './HeaderNav/HeaderNav';
+import logo from "./replate-icon.PNG";
+
+export default function Header () {
   return (
     <div className= 'headerCont'>
-      <HeaderNav />
-      
+
+      <div>
+        <img src={logo} alt="replate icon"/>
+      </div>
+      <HeaderNav/>
     </div>
   )
 }//end Header
 
-export default Header;
+

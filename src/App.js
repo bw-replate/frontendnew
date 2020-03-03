@@ -2,7 +2,8 @@ import React from 'react';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
 
-//components
+//imports
+import Header from './components/Header/Header';
 
 //styles
 import './App.css';
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* header/nav */}
+      <Header/>
 
     {/* site heading */}
       <h1> Replate </h1>
