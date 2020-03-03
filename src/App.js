@@ -9,6 +9,8 @@ import {UserContext} from './Contexts/UserContext';
 //imports
 import Header from './components/Header/Header';
 import FormikRegistration from './components/Signup/Signup';
+import Profile from './components/Profile/Profile';
+
 
 //styles
 import './App.css';
@@ -17,18 +19,27 @@ function App() {
   const [user, setUser]= useState();
 
   return (
-
-
       <div className="App">
-        <UserContext.Provider value= {user}>
+        {/* <UserContext.Provider value= {user}> */}
           <Header/>
 
           {/* site heading */}
-          <h1> Replate </h1>
+        <Route exact path="/">
+        <h1 className="mainHeading"> Replate </h1>
+          <Login/>
+        </Route>
+
+        <Route exact path="/profile">
+        <h1 className="mainHeading"> Profile </h1>
+          <Profile/>
+        </Route>
 
           {/* login component */}
+        <Route path="/register">
+        <h2 className="mainHeading"> Register Below </h2>
           <FormikRegistration user= {user} setUser= {setUser} />
-        </UserContext.Provider>
+        {/* </UserContext.Provider> */}
+        </Route>
       </div>
   );
 }//end App

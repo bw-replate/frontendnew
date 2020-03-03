@@ -11,7 +11,7 @@ const Registration = ({bag,values, errors, touched, status }) => {
     }, [status])
     return (
         <div className="user-form">
-          {console.log('user: ', bag.props.user)}
+          {/* {console.log('user: ', bag.props.user)} */}
             <Form>
                 <label htmlFor="name">
                     Name

@@ -9,9 +9,9 @@ const HeaderNav = () => {
     <>
       <nav>
         <div className="nav-links">
-          <NavLink to='/'>Nav item</NavLink>
-          <NavLink to='/'>Nav item</NavLink>
-          <NavLink to='/'>Nav item</NavLink>
+          <NavLink to='/'>Home</NavLink>
+          <NavLink to='/'>Logout</NavLink>
+          <NavLink to='/'>Display Username</NavLink>
         </div>
       </nav>
     </>
