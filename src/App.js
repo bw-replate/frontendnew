@@ -16,7 +16,11 @@ import Profile from './components/Profile/Profile';
 import './App.css';
 
 function App() {
-  const [user, setUser]= useState();
+  const [user, setUser]= useState({
+    username: '',
+    password: '',
+    phoneNumber: ''
+  });
 
   return (
       <div className="App">
@@ -35,11 +39,13 @@ function App() {
         </Route>
 
           {/* login component */}
+
         <Route path="/register">
         <h2 className="mainHeading"> Register Below </h2>
           <FormikRegistration user= {user} setUser= {setUser} />
         {/* </UserContext.Provider> */}
         </Route>
+
       </div>
   );
 }//end App
