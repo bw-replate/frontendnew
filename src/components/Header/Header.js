@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderNav from './HeaderNav/HeaderNav';
+
 
 //styles
 import './HeaderStyles';
