@@ -2,15 +2,18 @@ import React from 'react';
 import axios from 'axios';
 
 //styles
-import './LoginStyles';
+import { StyledDiv } from './LoginStyles';
 
-const Login = () => {
+//imports
+import LoginForm from './LoginForm';
+
+export const Login = () => {
 
   return (
-    <>
-      
-    </>
+    <StyledDiv>
+      <LoginForm/>
+    </StyledDiv>
   )
 }// end Login
 
-export default Login;
+
