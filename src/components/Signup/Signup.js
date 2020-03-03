@@ -3,7 +3,7 @@ import { withFormik, Form, Field } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
 
-const Registration = ({ values, errors, touched, status }) => {
+const Registration = ({bag,values, errors, touched, status }) => {
     const [users, setUsers] = useState([]);
 
     useEffect(() =>{
@@ -11,6 +11,7 @@ const Registration = ({ values, errors, touched, status }) => {
     }, [status])
     return (
         <div className="user-form">
+          {console.log('user: ', bag.props.user)}
             <Form>
                 <label htmlFor="name">
                     Name
@@ -23,7 +24,7 @@ const Registration = ({ values, errors, touched, status }) => {
                     {touched.name && errors.name && (<p className="errors">{errors.name}</p>)}
                 </label>
                 <label htmlFor="password">
-                    Name
+                    Password
                     <Field
                         id="password"
                         type="password"
@@ -33,12 +34,12 @@ const Registration = ({ values, errors, touched, status }) => {
                     {touched.password && errors.password && (<p className="errors">{errors.password}</p>)}
                 </label>
                 <label htmlFor="phoneNumber">
-                    Email
+                    Phone
                     <Field
                         id="phoneNumber"
-                        type="number"
+                        type="text"
                         name="phoneNumber"
-                        placeholder="number"
+                        placeholder="Phone"
                     />
                     {touched.phoneNumber && errors.phoneNumber && (<p className="errors">{errors.phoneNumber}</p>)}
                 </label>
@@ -79,7 +80,7 @@ const FormikRegistration = withFormik({
     },
     validationSchema: Yup.object().shape({
         name: Yup.string().required(),
-        email: Yup.string().required(),
+        phoneNumber: Yup.string().required(),
         password: Yup.string().required(),
         tos: Yup.bool().oneOf([true],"Please accept Terms of Service to Continue").required()
     }),
