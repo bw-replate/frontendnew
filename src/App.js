@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
 import {Route} from "react-router-dom";
+import Business from "./components/Profile/Business/Business";
 
 //contexts
 import {UserContext} from './Contexts/UserContext';
@@ -29,6 +30,7 @@ function App() {
           {/* login component */}
           <FormikRegistration user= {user} setUser= {setUser} />
         </UserContext.Provider>
+        <Route exact path="/busines" component={Business} />
       </div>
   );
 }//end App

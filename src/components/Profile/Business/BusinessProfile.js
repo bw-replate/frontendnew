@@ -12,3 +12,5 @@ export const BusinessProfile = () => {
         </div>
     )
 }
+
+export default BusinessProfile;
