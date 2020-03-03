@@ -14,10 +14,8 @@ function App() {
   return (
     <div className="App">
       <Header/>
-
     {/* site heading */}
       <h1> Replate </h1>
-
       {/* login component */}
     </div>
   );
