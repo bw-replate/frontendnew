@@ -2,26 +2,40 @@ import React, { useState, useEffect } from 'react';
 import { withFormik, Form, Field } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
+import {useHistory} from 'react-router-dom';
 
-const Registration = ({bag, values, errors, touched, status }) => {
-    const [users, setUsers] = useState([]);
+//styles
+import {Error} from './SignupStyles';
+
+const Registration = ({values, errors, touched, status }) => {
+  const [error, setError]= useState('');
+  const history= useHistory();
 
     useEffect(() =>{
-        status && setUsers(users => [...users, status]);
+      if(typeof status === 'string'){
+        setError(status);
+      }else{
+        setError('');
+        status && values.setUser({
+          ...values.user, ...status
+        });
+        history.push('/login');
+        console.log('user from useEffect: ', values.user);
+      }//end if/else
     }, [status])
     return (
         <div className="user-form">
-          {console.log('user: ', bag.props.user)}
+          {console.log('user: ', values.user)}
             <Form>
-                <label htmlFor="name">
+                <label htmlFor="username">
                     Name
                     <Field
-                        id="name"
+                        id="username"
                         type="text"
-                        name="name"
+                        name="username"
                         placeholder="username"
                     />
-                    {touched.name && errors.name && (<p className="errors">{errors.name}</p>)}
+                    {touched.username && errors.username && (<p classusername="errors">{errors.name}</p>)}
                 </label>
                 <label htmlFor="password">
                     Password
@@ -43,7 +57,7 @@ const Registration = ({bag, values, errors, touched, status }) => {
                     />
                     {touched.phoneNumber && errors.phoneNumber && (<p className="errors">{errors.phoneNumber}</p>)}
                 </label>
-                <label className="checkbox-container">
+                {/* <label className="checkbox-container">
                     Terms of Service
                     <Field
                         id="tos"
@@ -53,18 +67,18 @@ const Registration = ({bag, values, errors, touched, status }) => {
                     />
                     {errors.tos && (<p className="errors">{errors.tos}</p>)}
                     <span className="checkmark" />
-                </label>
+                </label> */}
                 <button type="submit">Register</button>
             </Form>
-            {users.map(user => {
-                return (
-                    <ul key={user.id}>
-                        <li>Name: {user.name}</li>
-                        <li>Password: {user.password}</li>
-                        <li>Number: {user.phoneNumber}</li>
-                    </ul>
-                )
-            })}
+              {error? <Error className= 'error'>{error}</Error> : null }
+            { 
+              <>
+                <p><i>testing purposes only:</i></p>
+                <p>useName: {values.username}</p>
+                <p>password: {values.password}</p>
+                <p>phone: {values.phoneNumber}</p>
+              </>
+            }
         </div>
     );
 };
@@ -72,25 +86,35 @@ const Registration = ({bag, values, errors, touched, status }) => {
 const FormikRegistration = withFormik({
     mapPropsToValues(props) {
         return {
-            name: props.name || '',
-            phoneNumber: props.phoneNumber || '',
-            password: props.password || '',
-            tos: props.tos || false
+            username: props.user.username || '',
+            phoneNumber: props.user.phoneNumber || '',
+            password: props.user.password || '',
+            // tos: props.tos || false,
+            user: props.user,
+            setUser: props.setUser
         };
     },
     validationSchema: Yup.object().shape({
-        name: Yup.string().required(),
+        username: Yup.string().required(),
         phoneNumber: Yup.string().required(),
         password: Yup.string().required(),
-        tos: Yup.bool().oneOf([true],"Please accept Terms of Service to Continue").required()
+        // tos: Yup.bool().oneOf([true],"Please accept Terms of Service to Continue").required()
     }),
     handleSubmit(values, { setStatus, resetForm}) {
-        axios.post('https://reqres.in/api/users', values)
+        axios.post('https://bw-replate-1.herokuapp.com/api/auth/register', values)
                 .then(res => {
-                    setStatus(res.data);
+                    setStatus(res);
+                    console.log('res: ', res);
                     resetForm();
                 })
-                .catch(err => console.log(err.response))
+                .catch(err => {
+                  if (err.response.status === 500){
+                    setStatus('That user already exists');
+                  }else{
+                    console.log('Error: ', err.response);
+                  }
+                  // console.log('Error: ', err.response.status)
+                })
     }
 })(Registration)
 export default FormikRegistration;
