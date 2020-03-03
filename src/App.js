@@ -14,7 +14,11 @@ import FormikRegistration from './components/Signup/Signup';
 import './App.css';
 
 function App() {
-  const [user, setUser]= useState();
+  const [user, setUser]= useState({
+    username: '',
+    password: '',
+    phoneNumber: ''
+  });
 
   return (
 
@@ -27,7 +31,10 @@ function App() {
           <h1> Replate </h1>
 
           {/* login component */}
-          <FormikRegistration user= {user} setUser= {setUser} />
+          <FormikRegistration 
+            setUser= {setUser} 
+            user= {user} 
+            />
         </UserContext.Provider>
       </div>
   );
