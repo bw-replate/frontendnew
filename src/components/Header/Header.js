@@ -1,4 +1,5 @@
 import React from 'react';
+import HeaderNav from './HeaderNav/HeaderNav';
 
 //styles
 import './HeaderStyles';
@@ -6,6 +7,7 @@ import './HeaderStyles';
 export const Header = () => {
   return (
     <div className= 'headerCont'>
+      <HeaderNav />
       
     </div>
   )
