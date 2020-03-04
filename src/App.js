@@ -29,7 +29,6 @@ function App() {
     phoneNumber: ""
   });
 
-
   const [data, setData] = useState({
     address: "",
     phoneNumber: "",
@@ -37,16 +36,11 @@ function App() {
     businesses: ""
   })
 
-  return (
-    <div className="App">
-      <UserContext.Provider value={user}>
-        <Header />
-
   //login from state
   const [loggedInUser, setLoggedInUser] = useState('');
 
   useEffect( () => {
-    setLoggedInUser(window.localStorage.getItem('loggedInUser') ? ' '+window.localStorage.getItem('loggedInUser') : '');
+    setLoggedInUser(window.localStorage.getItem('loggedInUser') ? ' '+window.localStorage.getItem('loggedInUser') : '')
     
   }, [loggedInUser]);
 
@@ -60,7 +54,7 @@ function App() {
           <FormikRegistration createUser={createUser} setCreateUser={setCreateUser} />
         </Route>
 
-        <Switch>
+     
 
           <Route exact path="/">
             <h1 className="mainHeading"> Replate </h1>
@@ -78,18 +72,10 @@ function App() {
           <Logout setLoggedInUser= {setLoggedInUser}/>
         </Route>
 
-        
-
-          <Route path="/signup">
-            <h2 className="mainHeadingSignUp"> Register Below </h2>
-            <FormikRegistration user={user} setUser={setUser} />
-          </Route>
-
-          
+         
           <Route path="/editcurrentpickup">
             <EditCurrentPickups/>
           </Route>
-
 
 
           <Route path="/availablepickups">
@@ -97,18 +83,10 @@ function App() {
             <AvailablePickups/>
           </Route>
 
-        
+      
           <Route path="/viewpickup/:id"><AcceptPickup/></Route>
-
           <Route path="/business" component={Business} />
-
-
-
-        <Route path="/viewpickup:1"><AcceptPickup /></Route>
-
           <Route path="/addplate" component={AddPlate} />
-
-
 
       </UserContext.Provider>
     </div>
