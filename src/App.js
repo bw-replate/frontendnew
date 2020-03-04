@@ -33,7 +33,7 @@ function App() {
         </Route>
 
         <Route exact path="/profile">
-        <h1 className="mainHeading"> Profile </h1>
+        <h1 className="mainHeading">Profile</h1>
           <Profile/>
         </Route>
 
