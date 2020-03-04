@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-
-import Login from "./components/Login/Login";
-import Footer from "./components/Footer/Footer";
 import { Route, Switch } from "react-router-dom";
 
 //contexts
@@ -72,7 +69,7 @@ function App() {
           <Route path="/business" component={Business} />
 
           <Route path="/addplate" component={AddPlate} />
-          
+
         </Switch>
       </UserContext.Provider>
     </div>
