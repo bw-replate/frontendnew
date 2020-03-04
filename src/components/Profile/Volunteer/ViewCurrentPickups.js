@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+// import React, {useState, useEffect} from 'react';
+// import axios from 'axios';
 
-//get axios to display information
+// //get axios to display information
 
-export const ViewCurrentPickups = () => {
-    return (
-        <div>
-            This is displays individual current pickup
-        </div>
-    )
-}
+// export const ViewCurrentPickups = () => {
+//     return (
+//         <div>
+//             This is displays individual current pickup
+//         </div>
+//     )
+// }
+
+
+//not totally sure if we need this file

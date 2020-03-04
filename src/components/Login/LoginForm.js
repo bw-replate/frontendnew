@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {useHistory} from 'react-router-dom';
 import { withFormik, Form, Field } from 'formik';
+import {Route, NavLink, useHistory} from 'react-router-dom';
+import axios from 'axios';
 import * as Yup from 'yup';
 
 //utils
@@ -20,6 +22,7 @@ const LoginForm = ({ values, touched, errors, status }) => {
   const [message, setMessage] = useState('');
   const history= useHistory();
 
+  const history = useHistory();
   useEffect(() => {
     // status && console.log("status:", status);
     //if status contains a response, and is not undefined... proceed
@@ -40,7 +43,6 @@ const LoginForm = ({ values, touched, errors, status }) => {
       setIsError(true);
       setMessage('Username or password is incorrect');
     }//end if
-   
 
   }, [status]);
 

@@ -1,0 +1,18 @@
+.volunteerOnlyPickups{
+    background-color: greenyellow;
+}
+
+.edit{
+    text-align: center;
+    border: 1px solid firebrick;
+}
+
+.pickupsList{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.acceptpickup{
+    text-align: center;
+    font-size: 3rem;
+}
