@@ -18,6 +18,11 @@ nav {
   margin-bottom: 32px;
 }
 
+nav #user{
+  border-bottom: none;
+  font-size: 2rem;
+}
+
 .nav-links {
   display: flex;
   justify-content: space-evenly;
@@ -40,5 +45,13 @@ nav {
   font-size: 10rem;
 }
 
+.mainHeadingLogout{
+  text-align: center;
+  font-size: 4rem;
+}
 
+.mainHeadingPickupsList{
+  text-align: center;
+  font-size: 5rem;
+}
 
