@@ -11,10 +11,11 @@ import axios from 'axios';
 //styles
 import './ProfileStyles';
 
-const Profile = () => {
+const Profile = ({status}) => {
   return (
+    
     <div className= 'profileCont'>
-      <h1>Replate User</h1>
+      <h2>{status}</h2>
       <h2>Name</h2>
       <h2>Address</h2>
       <h2>Phone</h2>
