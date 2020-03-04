@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-      <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
+      <UserContext.Provider value={{ loggedInUser, setLoggedInUser, data }}>
         <Route path= '/'><Header loggedInUser={loggedInUser} /></Route>
 
         <Route path="/signup">

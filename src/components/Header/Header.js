@@ -11,8 +11,6 @@ export default function Header ({loggedInUser}) {
       </div>
       <HeaderNav loggedInUser= {loggedInUser}/>
 
-
-
     </div>
   )
 }//end Header
