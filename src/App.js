@@ -37,11 +37,14 @@ function App() {
           <Profile/>
         </Route>
 
-        <Route exact path="/signup">
+          {/* login component */}
+
+        <Route path="/signup">
         <h2 className="mainHeading"> Register Below </h2>
           <FormikRegistration user= {user} setUser= {setUser} />
         </Route>
-        </UserContext.Provider>
+      </UserContext.Provider>
+
 
       </div>
   );
