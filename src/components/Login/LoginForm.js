@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { withFormik, Form, Field } from 'formik';
-import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 import * as Yup from 'yup';
 
-//imports
+//utils
+import {axiosWithAuth} from '../../utils/axiosWithAuth';
 
-//styles
+//components
+
 const LoginForm = ({ values, touched, errors, status }) => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({
+    usename: '',
+    password: ''
+  });
 
   useEffect(() => {
-    console.log("status has changes", status);
-    status && setUser(user => [...user, status]);
+    status && console.log("status has changes", status.token);
+    status && setUser({
+      ...user,
+      status
+    });
+    status && window.localStorage.setItem('token', status.token);
 
   }, [status]);
+
   return (
     <div className="userForm">
       <Form>
@@ -28,6 +36,7 @@ const LoginForm = ({ values, touched, errors, status }) => {
         {touched.username && errors.username && (
           <p className="errors">{errors.username}</p>
         )}
+
         <label htmlFor="password">Password</label>
         <Field
           id="password"
@@ -38,16 +47,11 @@ const LoginForm = ({ values, touched, errors, status }) => {
         {touched.password && errors.password && (
           <p className="errors">{errors.password}</p>
         )}
-        <NavLink to="/profile"><button type="submit">Login</button></NavLink>
+        <button type="submit">Login</button>
       </Form>
     </div>
   );
 };
-
-//super component
-
-// The withFormik higher order component passes props and handler functions into your React component. All Formik forms need to be passed a handleSubmit prop. This should be a function which is called whenever the form is submitted. The withFormik wrapper automatically handles the onChange and onBlur functionality for you, however, this can be customised if needed.
-
 
 const FormikLoginForm = withFormik({
 
@@ -63,20 +67,17 @@ const FormikLoginForm = withFormik({
     password: Yup.string().required()
   }),
 
-  //handles submission
-
   handleSubmit(values, { setStatus, resetForm, setSubmitting }) {
-    console.log("submitting", values);
-    console.log('Submitted Username:', values.username);
-    console.log('Submitted Password:', values.password)
+
     //send submitted values
-    axios.post("https://bw-replate-1.herokuapp.com/api/auth/login", values)
+    axiosWithAuth()
+      .post("https://bw-replate-1.herokuapp.com/api/auth/login", values)
       .then(response => {
         console.log("success", response);
         setStatus(response.data);
-        resetForm();
+        // resetForm();
       });
-  }
+  }//end handleSubmit
 
 })(LoginForm);
 
