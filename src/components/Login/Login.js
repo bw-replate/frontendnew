@@ -17,7 +17,7 @@ export default function Login () {
         <h1 className="mainFormHeading">Login Below</h1>
       </StyledDiv>
       <FormikLoginForm/>
-      <NavLink to="/register">
+      <NavLink to="/signup">
       <h2 className="accountSignUp">Don't Have An Account Yet?</h2>
       </NavLink>
     </div>

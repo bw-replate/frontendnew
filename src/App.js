@@ -24,10 +24,9 @@ function App() {
 
   return (
       <div className="App">
-        {/* <UserContext.Provider value= {user}> */}
+        <UserContext.Provider value= {user}>
           <Header/>
 
-          {/* site heading */}
         <Route exact path="/">
         <h1 className="mainHeading"> Replate </h1>
           <Login/>
@@ -38,13 +37,11 @@ function App() {
           <Profile/>
         </Route>
 
-          {/* login component */}
-
-        <Route path="/register">
+        <Route exact path="/signup">
         <h2 className="mainHeading"> Register Below </h2>
           <FormikRegistration user= {user} setUser= {setUser} />
-        {/* </UserContext.Provider> */}
         </Route>
+        </UserContext.Provider>
 
       </div>
   );
