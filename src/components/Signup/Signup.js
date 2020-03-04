@@ -5,22 +5,22 @@ import * as Yup from 'yup';
 import {useHistory} from 'react-router-dom';
 
 //styles
-import {Error} from './SignupStyles';
+import {Error, Message} from './SignupStyles';
 
 const Registration = ({values, errors, touched, status }) => {
   const [error, setError]= useState('');
+  const [message, setMessage]= useState('');
   const history= useHistory();
 
     useEffect(() =>{
       if(typeof status === 'string'){
         setError(status);
-      }else{
+      }else if(!status === ""){
         setError('');
         status && values.setUser({
           ...values.user, ...status
         });
-        // history.push('/login');
-        console.log('user from useEffect: ', values.user);
+  
       }//end if/else
     }, [status])
     return (
@@ -59,20 +59,11 @@ const Registration = ({values, errors, touched, status }) => {
                     />
                     {touched.phoneNumber && errors.phoneNumber && (<p className="errors">{errors.phoneNumber}</p>)}
                 </label>
-                {/* <label className="checkbox-container">
-                    Terms of Service
-                    <Field
-                        id="tos"
-                        type="checkbox"
-                        name="tos"
-                        checked={values.tos}
-                    />
-                    {errors.tos && (<p className="errors">{errors.tos}</p>)}
-                    <span className="checkmark" />
-                </label> */}
+               
                 <button type="submit">Register</button>
             </Form>
-              {error? <Error className= 'error'>{error}</Error> : null }
+              {error ? <Error className= 'error'>{error}</Error> : null }
+              {message ? <Message className= 'message'>{message}</Message> : null }
             { 
               <>
                 <p><i>testing purposes only:</i></p>
@@ -94,7 +85,7 @@ const FormikRegistration = withFormik({
             // tos: props.tos || false,
             user: props.user,
             setUser: props.setUser
-        };
+        };         
     },
     validationSchema: Yup.object().shape({
         username: Yup.string().required(),
