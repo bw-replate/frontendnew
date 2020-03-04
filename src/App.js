@@ -16,7 +16,7 @@ import {EditCurrentPickups} from "./components/Profile/Volunteer/EditCurrentPick
 import {AvailablePickups} from "./components/Profile/Volunteer/AvailablePickups";
 import {AcceptPickup} from "./components/Profile/Volunteer/AcceptPickup";
 import Business from "./components/Profile/Business/Business";
-import AddPlate from "./components/Profile/Business/AddPlate";
+import {AddPlate} from "./components/Profile/Business/AddPlate";
 
 //styles
 import "./App.css";
@@ -35,20 +35,7 @@ function App() {
     phoneNumber: "",
     plates: "",
     businesses: ""
-  })
-
-  return (
-    <div className="App">
-      <UserContext.Provider value={user}>
-        <Header />
-
-  //login from state
-  const [loggedInUser, setLoggedInUser] = useState('');
-
-  useEffect( () => {
-    setLoggedInUser(window.localStorage.getItem('loggedInUser') ? ' '+window.localStorage.getItem('loggedInUser') : '');
-    
-  }, [loggedInUser]);
+  });
 
   return (
     <div className="App">
@@ -59,8 +46,6 @@ function App() {
           <h2 className="mainHeadingSignUp"> Register Below </h2>
           <FormikRegistration createUser={createUser} setCreateUser={setCreateUser} />
         </Route>
-
-        <Switch>
 
           <Route exact path="/">
             <h1 className="mainHeading"> Replate </h1>
