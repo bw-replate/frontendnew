@@ -12,11 +12,12 @@ import Profile from "./components/Profile/Profile";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 
-import {EditCurrentPickups} from "./components/Profile/Volunteer/EditCurrentPickups";
-import {AvailablePickups} from "./components/Profile/Volunteer/AvailablePickups";
-import {AcceptPickup} from "./components/Profile/Volunteer/AcceptPickup";
+import { EditCurrentPickups } from "./components/Profile/Volunteer/EditCurrentPickups";
+import { AvailablePickups } from "./components/Profile/Volunteer/AvailablePickups";
+import { AcceptPickup } from "./components/Profile/Volunteer/AcceptPickup";
 import Business from "./components/Profile/Business/Business";
 import {AddPlate} from "./components/Profile/Business/AddPlate";
+import FormikAddBusiness from './components/Profile/AddBusiness';
 
 //styles
 import "./App.css";
@@ -29,23 +30,34 @@ function App() {
     phoneNumber: ""
   });
 
-
   const [data, setData] = useState({
     address: "",
     phoneNumber: "",
     plates: "",
     businesses: ""
-  });
+  })
+
+  const [loggedInUser, setLoggedInUser] = useState('');
+
+  useEffect(() => {
+    setLoggedInUser(window.localStorage.getItem('loggedInUser') ? ' ' + window.localStorage.getItem('loggedInUser') : '');
+
+
+  }, [loggedInUser]);
 
   return (
     <div className="App">
-      <UserContext.Provider value={{loggedInUser, setLoggedInUser}}>
-        <Header loggedInUser= {loggedInUser}/>
+      <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
+        <Route path= '/'><Header loggedInUser={loggedInUser} /></Route>
 
         <Route path="/signup">
           <h2 className="mainHeadingSignUp"> Register Below </h2>
           <FormikRegistration createUser={createUser} setCreateUser={setCreateUser} />
         </Route>
+
+
+     
+
 
           <Route exact path="/">
             <h1 className="mainHeading"> Replate </h1>
@@ -58,46 +70,35 @@ function App() {
           </Route>
 
 
+
         <Route path="/logout">
           <h2 className="mainHeadingLogout">See You At Your Next Replate</h2>
           <Logout setLoggedInUser= {setLoggedInUser}/>
         </Route>
 
-        
+         
 
-          <Route path="/signup">
-            <h2 className="mainHeadingSignUp"> Register Below </h2>
-            <FormikRegistration user={user} setUser={setUser} />
-          </Route>
-
-          
           <Route path="/editcurrentpickup">
-            <EditCurrentPickups/>
+            <EditCurrentPickups />
           </Route>
 
 
 
           <Route path="/availablepickups">
-          <h2 className="mainHeadingPickupsList">AvailablePickups</h2>
-            <AvailablePickups/>
+            <h2 className="mainHeadingPickupsList">AvailablePickups</h2>
+            <AvailablePickups />
           </Route>
 
-        
+
+      
           <Route path="/viewpickup/:id"><AcceptPickup/></Route>
-
           <Route path="/business" component={Business} />
-
-
-
-        <Route path="/viewpickup:1"><AcceptPickup /></Route>
-
           <Route path="/addplate" component={AddPlate} />
-
-
+          <Route exact path="/addbusiness" component={FormikAddBusiness} />
 
       </UserContext.Provider>
     </div>
   );
-} //end App
+}
 
 export default App;

@@ -1,17 +1,12 @@
-
-
 import React, {useEffect, useState} from 'react';
 import { NavLink } from 'react-router-dom';
 
-
-
-
-
 const HeaderNav = ({loggedInUser}) => {
-  const [curUser, setCurUser]= useState('');
-  useEffect(() => {
-  setCurUser(loggedInUser);
-  }, [loggedInUser])
+  // const [curUser, setCurUser]= useState(loggedInUser);
+
+  // useEffect(() => {
+  //   loggedInUser ? setCurUser(loggedInUser) : setCurUser('');
+  // }, [loggedInUser]);
 
   return (
     <>
@@ -19,7 +14,7 @@ const HeaderNav = ({loggedInUser}) => {
         <div className="nav-links">
           <NavLink to='/'>Home</NavLink>
           <NavLink to='/logout'>Logout</NavLink>
-          {curUser !== null && <NavLink to={`/profile/:${curUser}`}>Welcome, {curUser}
+          {loggedInUser && <NavLink to={`/profile/:${loggedInUser}`}>Welcome, {loggedInUser}
           </NavLink>}
         </div>
       </nav>
