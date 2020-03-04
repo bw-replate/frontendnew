@@ -10,7 +10,7 @@ import logo from "./replate-icon.PNG";
 export default function Header () {
   return (
     <div className= 'headerCont'>
-
+      <span className= 'welcomeMessage'>Welcome, user</span>
       <div>
         <img src={logo} alt="replate icon"/>
       </div>

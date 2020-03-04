@@ -14,8 +14,8 @@ const Registration = ({ values, errors, touched, status }) => {
   useEffect(() => {
     console.log('status: ', status);
     if (typeof status === 'object' && status !== undefined) {
-      status && values.setUser({
-        ...values.user, ...status
+      status && values.setCreateUser({
+        ...values.createUser, ...status
       });
       setIsError(false);
       setMessage('Successful Registration');
@@ -28,22 +28,27 @@ const Registration = ({ values, errors, touched, status }) => {
   return (
     <div className="user-form">
 
-      {console.log('user: ', values.user)}
+      {console.log('user: ', values.createUser)}
+      { // if there are errors show them
+        isError ? <Error className='error'>{message}</Error> :
+          //if theres a message but no errors its a succes message, show it
+          message.length > 1 && isError === false ? <Message className='message'>{message}</Message> : null
+      }
 
       <Form>
         <label htmlFor="username">
           Name
-                    <Field
+          <Field
             id="username"
             type="text"
             name="username"
             placeholder="username"
           />
-          {touched.username && errors.username && (<p classusername="errors">{errors.name}</p>)}
+          {touched.username && errors.username && (<p classusername="errors">{errors.username}</p>)}
         </label>
         <label htmlFor="password">
           Password
-                    <Field
+          <Field
             id="password"
             type="password"
             name="password"
@@ -53,7 +58,7 @@ const Registration = ({ values, errors, touched, status }) => {
         </label>
         <label htmlFor="phoneNumber">
           Phone
-                    <Field
+          <Field
             id="phoneNumber"
             type="text"
             name="phoneNumber"
@@ -64,11 +69,9 @@ const Registration = ({ values, errors, touched, status }) => {
 
         <button type="submit">Register</button>
       </Form>
-      { // if there are errors show them
-        isError ? <Error className='error'>{message}</Error> :
-          //if theres a message but no errors its a succes message, show it
-          message.length > 1 && isError === false ? <Message className='message'>{message}</Message> : null
-      }
+      
+      <p>Already have an account? <Link to= '/'>Log in</Link></p>
+
       { //if successful registration show button to goto log in page 
         message === 'Successful Registration' ? <Link to='/'><button>Log In</button></Link> : null}
     </div>
@@ -78,18 +81,17 @@ const Registration = ({ values, errors, touched, status }) => {
 const FormikRegistration = withFormik({
   mapPropsToValues(props) {
     return {
-      username: props.user.username || '',
-      phoneNumber: props.user.phoneNumber || '',
-      password: props.user.password || '',
-      user: props.user,
-      setUser: props.setUser
+      createUser: props.creatUser,
+      username: props.createUser.username,
+      phoneNumber: props.createUser.phoneNumber,
+      password: props.password,
+      setCreateUser: props.setCreateUser
     };
   },
   validationSchema: Yup.object().shape({
     username: Yup.string().required(),
     phoneNumber: Yup.string().required(),
     password: Yup.string().required(),
-    // tos: Yup.bool().oneOf([true],"Please accept Terms of Service to Continue").required()
   }),
   handleSubmit(values, { setStatus, resetForm }) {
     axios.post('https://bw-replate-1.herokuapp.com/api/auth/register', values)
@@ -102,8 +104,7 @@ const FormikRegistration = withFormik({
         if (err.response.status === 500) {
           setStatus('duplicate');
           resetForm();
-        }
-        // console.log('Error: ', err.response.status);
+        }//end if
       })
     setStatus('');
   }//end handleSubmit

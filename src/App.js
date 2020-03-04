@@ -19,10 +19,17 @@ import { AcceptPickup } from "./components/Profile/Volunteer/AcceptPickup";
 import "./App.css";
 
 function App() {
-  const [user, setUser] = useState({
+  //signup form state
+  const [createUser, setCreateUser] = useState({
     username: "",
     password: "",
     phoneNumber: ""
+  });
+
+  //login from state
+  const [user, setUser] = useState({
+    usename: '',
+    password: ''
   });
 
   return (
@@ -30,19 +37,14 @@ function App() {
       <UserContext.Provider value={user}>
         <Header />
 
+        <Route path="/signup">
+          <h2 className="mainHeadingSignUp"> Register Below </h2>
+          <FormikRegistration createUser={createUser} setCreateUser={setCreateUser} />
+        </Route>
+
         <Route exact path="/">
           <h1 className="mainHeading"> Replate </h1>
           <Login />
-        </Route>
-
-        <Route exact path="/profile">
-          <h1 className="mainHeadingProfile">Replate</h1>
-          <Profile />
-        </Route>
-
-        <Route path="/signup">
-          <h2 className="mainHeadingSignUp"> Register Below </h2>
-          <FormikRegistration user={user} setUser={setUser} />
         </Route>
 
         <Route path="/logout">
@@ -50,13 +52,18 @@ function App() {
           <Logout />
         </Route>
 
-        <Route path="/editcurrentpickup">
-          <EditCurrentPickups />
+        <Route exact path="/profile">
+          <h1 className="mainHeadingProfile">Replate</h1>
+          <Profile />
         </Route>
 
         <Route path="/availablepickups">
           <h2 className="mainHeadingPickupsList">AvailablePickups</h2>
           <AvailablePickups />
+        </Route>
+
+        <Route path="/editcurrentpickup">
+          <EditCurrentPickups />
         </Route>
 
         <Route path="/viewpickup:1"><AcceptPickup /></Route>

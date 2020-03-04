@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { withFormik, Form, Field } from 'formik';
-import { Route, NavLink, useHistory } from 'react-router-dom';
-import axios from 'axios';
+import {Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 
 //utils
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 //components
+import {UserContext} from '../../Contexts/UserContext';
 
 //stlyles
 import { Error, Message } from './LoginStyles';
 
 const LoginForm = ({ values, touched, errors, status }) => {
-  const [user, setUser] = useState({
-    usename: '',
-    password: ''
-  });
+  const {user, setUser}= useContext(UserContext);
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState('');
   const history = useHistory();
@@ -46,6 +43,11 @@ const LoginForm = ({ values, touched, errors, status }) => {
 
   return (
     <div className="userForm">
+      {/* if error, show it */
+        isError ? <Error className='error'>{message}</Error> :
+        // if success message, show it
+        !isError && message ? <Message>{message}</Message> : null
+      }
       <Form>
         <label htmlFor="username">Username</label>
         <Field
@@ -70,11 +72,8 @@ const LoginForm = ({ values, touched, errors, status }) => {
         )}
         <button type="submit">Login</button>
       </Form>
-      {/* if error, show it */}
-      {isError ? <Error className='error'>{message}</Error> :
-        // if success message, show it
-        !isError && message ? <Message>{message}</Message> : null
-      }
+      <p>Don't have an account? <Link to= '/signup'>Create an account</Link></p>
+      
 
     </div>
   );
