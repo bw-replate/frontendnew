@@ -5,11 +5,14 @@ import {withRouter} from 'react-router-dom';
 import BusinessProfile from './BusinessProfile';
 import AddPlate from './AddPlate.js'
 
+//styles
+import {BusinessCont} from './BusinessStyles';
+
 const Business = () => {
     return (
-        <div>
+        <BusinessCont className= "businessCont">
             <BusinessProfile/>
-        </div>
+        </BusinessCont>
     )
 }
 
