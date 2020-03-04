@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withFormik, Form, Field } from 'formik';
 import {Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -7,32 +7,32 @@ import * as Yup from 'yup';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 //components
-import {UserContext} from '../../Contexts/UserContext';
+
 
 //stlyles
 import { Error, Message } from './LoginStyles';
 
 const LoginForm = ({ values, touched, errors, status }) => {
-  const {user, setUser}= useContext(UserContext);
+  const [user, setUser] = useState('');
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState('');
   const history = useHistory();
-
+  let curUser= '';
   useEffect(() => {
-    // status && console.log("status:", status);
+    // status && console.log("status message:", status.message.slice(8));
     //if status contains a response, and is not undefined... proceed
     if (typeof status === 'object' && status !== undefined) {
       setIsError(false);
-      status && setUser({
-        ...user,
-        status
-      });
+      curUser= status.message.slice(8);
+      setUser(curUser);
+
+      status && window.localStorage.setItem('loggedInUser', values.username);
       status && window.localStorage.setItem('token', status.token);
       setIsError(false);
-      setMessage('Successful Registration');
+      setMessage('Successful Log In');
       setTimeout(() => {
         //redirect
-        history.push('/profile');
+        history.push(`/profile`);
       }, 1000);//end setTimeout
     } else if (status === 'error') {
       setIsError(true);
@@ -43,6 +43,10 @@ const LoginForm = ({ values, touched, errors, status }) => {
 
   return (
     <div className="userForm">
+
+    {console.log('loggedInUser:', user)}
+    {console.log('status:', status)}
+
       {/* if error, show it */
         isError ? <Error className='error'>{message}</Error> :
         // if success message, show it
@@ -81,9 +85,10 @@ const LoginForm = ({ values, touched, errors, status }) => {
 
 const FormikLoginForm = withFormik({
 
-  mapPropsToValues({ }) {
+  mapPropsToValues({username, password }) {
     return {
-
+      username: username,
+      password: password
     };
   },
 
@@ -98,7 +103,7 @@ const FormikLoginForm = withFormik({
     axiosWithAuth()
       .post("https://bw-replate-1.herokuapp.com/api/auth/login", values)
       .then(response => {
-        console.log("success", response);
+        console.log("success", response.data);
         setStatus(response.data);
         // resetForm();
       })

@@ -1,17 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { NavLink } from 'react-router-dom';
 
 //styles
 import './HeaderNavStyles';
 
-const HeaderNav = () => {
+const HeaderNav = ({loggedInUser}) => {
+  const [curUser, setCurUser]= useState('');
+  useEffect(() => {
+  setCurUser(loggedInUser);
+  }, [loggedInUser])
+
   return (
     <>
       <nav>
         <div className="nav-links">
           <NavLink to='/'>Home</NavLink>
           <NavLink to='/logout'>Logout</NavLink>
-          <NavLink to='/profile'>Toni Placeholder</NavLink>
+          {curUser !== null && <NavLink to={`/profile/:${curUser}`}>Welcome, {curUser}
+          </NavLink>}
         </div>
       </nav>
     </>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 
 //contexts
@@ -27,15 +27,17 @@ function App() {
   });
 
   //login from state
-  const [user, setUser] = useState({
-    usename: '',
-    password: ''
-  });
+  const [loggedInUser, setLoggedInUser] = useState('');
+
+  useEffect( () => {
+    setLoggedInUser(window.localStorage.getItem('loggedInUser') ? ' '+window.localStorage.getItem('loggedInUser') : '');
+    
+  }, [loggedInUser]);
 
   return (
     <div className="App">
-      <UserContext.Provider value={user}>
-        <Header />
+      <UserContext.Provider value={{loggedInUser, setLoggedInUser}}>
+        <Header loggedInUser= {loggedInUser}/>
 
         <Route path="/signup">
           <h2 className="mainHeadingSignUp"> Register Below </h2>
@@ -49,7 +51,7 @@ function App() {
 
         <Route path="/logout">
           <h2 className="mainHeadingLogout">See You At Your Next Replate</h2>
-          <Logout />
+          <Logout setLoggedInUser= {setLoggedInUser}/>
         </Route>
 
         <Route exact path="/profile">
