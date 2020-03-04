@@ -4,23 +4,26 @@
 
 import React from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+
 
 //imports
 import './profile.css';
+import {UserContext} from '../../Contexts/UserContext';
 
 
 //styles
 import "./ProfileStyles";
 import { VolunteerPickups } from "./Volunteer/VolunteerPickups";
 
-const Profile = props => {
-  console.log(props.username);
+const Profile = () => {
+  const {username, phoneNumber} = useContext(UserContext);
+  let user = window.localStorage.getItem('loggedInUser');
   return (
     <div className="profileCont">
-      <h2>Toni Placeholder</h2>
+      <h2>{user}</h2>
       <h3>1234 Going Places Avenue, Placeholder, CA 80012</h3>
-      <h3>919-322-355</h3>
+      <h3>{phoneNumber}</h3>
       <button>Add Business</button>
       <button>Delete Profile</button>
       <button>Edit Profile</button>

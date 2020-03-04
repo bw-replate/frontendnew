@@ -1,7 +1,5 @@
-
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
-
 
 //contexts
 import { UserContext } from "./Contexts/UserContext";
@@ -31,6 +29,19 @@ function App() {
     phoneNumber: ""
   });
 
+
+  const [data, setData] = useState({
+    address: "",
+    phoneNumber: "",
+    plates: "",
+    businesses: ""
+  })
+
+  return (
+    <div className="App">
+      <UserContext.Provider value={user}>
+        <Header />
+
   //login from state
   const [loggedInUser, setLoggedInUser] = useState('');
 
@@ -50,12 +61,13 @@ function App() {
         </Route>
 
         <Switch>
+
           <Route exact path="/">
             <h1 className="mainHeading"> Replate </h1>
             <Login />
           </Route>
 
-          <Route exact path="/profile">
+          <Route path="/profile">
             <h1 className="mainHeadingProfile">Replate</h1>
             <Profile />
           </Route>
@@ -85,6 +97,7 @@ function App() {
             <AvailablePickups/>
           </Route>
 
+        
           <Route path="/viewpickup/:id"><AcceptPickup/></Route>
 
           <Route path="/business" component={Business} />
@@ -96,7 +109,7 @@ function App() {
           <Route path="/addplate" component={AddPlate} />
 
 
-        </Switch>
+
       </UserContext.Provider>
     </div>
   );

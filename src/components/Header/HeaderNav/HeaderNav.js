@@ -1,11 +1,11 @@
 
+
 import React, {useEffect, useState} from 'react';
 import { NavLink } from 'react-router-dom';
 
 
 
-//styles
-import './HeaderNavStyles';
+
 
 const HeaderNav = ({loggedInUser}) => {
   const [curUser, setCurUser]= useState('');
@@ -27,4 +27,4 @@ const HeaderNav = ({loggedInUser}) => {
   )
 }// end HeaderNav
 
-export default withRouter(HeaderNav);
+export default HeaderNav;
