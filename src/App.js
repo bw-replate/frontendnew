@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 //contexts
 import { UserContext } from "./Contexts/UserContext";
@@ -16,7 +16,8 @@ import { EditCurrentPickups } from "./components/Profile/Volunteer/EditCurrentPi
 import { AvailablePickups } from "./components/Profile/Volunteer/AvailablePickups";
 import { AcceptPickup } from "./components/Profile/Volunteer/AcceptPickup";
 import Business from "./components/Profile/Business/Business";
-import AddPlate from "./components/Profile/Business/AddPlate";
+import {AddPlate} from "./components/Profile/Business/AddPlate";
+import FormikAddBusiness from './components/Profile/AddBusiness';
 
 //styles
 import "./App.css";
@@ -93,6 +94,7 @@ function App() {
           <Route path="/viewpickup/:id"><AcceptPickup/></Route>
           <Route path="/business" component={Business} />
           <Route path="/addplate" component={AddPlate} />
+          <Route exact path="/addbusiness" component={FormikAddBusiness} />
 
       </UserContext.Provider>
     </div>
