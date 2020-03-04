@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
 
 //styles
 import { StyledDiv } from './LoginStyles';
@@ -8,7 +8,7 @@ import './login.css';
 //imports
 import FormikLoginForm from './LoginForm';
 
-export default function Login () {
+function Login () {
 
   return (
     <div>
@@ -21,4 +21,4 @@ export default function Login () {
   )
 }// end Login
 
-
+export default withRouter(Login)

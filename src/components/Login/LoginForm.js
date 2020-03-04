@@ -6,8 +6,6 @@ import * as Yup from 'yup';
 //utils
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
-//components
-
 
 //stlyles
 import { Error, Message } from './LoginStyles';
@@ -16,6 +14,7 @@ const LoginForm = ({ values, touched, errors, status }) => {
   const [user, setUser] = useState('');
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState('');
+
   const history = useHistory();
   let curUser= '';
   useEffect(() => {

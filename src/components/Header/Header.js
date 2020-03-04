@@ -1,7 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import HeaderNav from './HeaderNav/HeaderNav';
+
 
 //styles
 import './HeaderStyles';
+
 
 //imports
 import HeaderNav from './HeaderNav/HeaderNav';
@@ -15,8 +18,14 @@ export default function Header ({loggedInUser}) {
         <img src={logo} alt="replate icon"/>
       </div>
       <HeaderNav loggedInUser= {loggedInUser} />
+
+export const Header = () => {
+  return (
+    <div className= 'headerCont'>
+      <HeaderNav />
+
     </div>
   )
 }//end Header
 
-
+export default Header;
