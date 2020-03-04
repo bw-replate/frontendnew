@@ -1,18 +1,23 @@
 import React from 'react';
 import axios from 'axios';
+<<<<<<< HEAD
 import {Route} from 'react-router-dom';
 import AddBusiness from './AddBusiness';
 import ProfileEdit from './ProfileEdit';
 import BusinessProfile from './Business/BusinessProfile';
+=======
+import {useState, useEffect} from 'react';
+
+//imports
+>>>>>>> bbaae1dd51bcec0962cce5720d79d57d966b58a8
 
 //styles
 import './ProfileStyles';
 
-const Profile = ({status}) => {
+const Profile = (props) => {
+  console.log(props.username)
   return (
-    
     <div className= 'profileCont'>
-      <h2>{status}</h2>
       <h2>Name</h2>
       <h2>Address</h2>
       <h2>Phone</h2>
