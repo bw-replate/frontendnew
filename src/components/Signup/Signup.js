@@ -9,6 +9,7 @@ import {Error} from './SignupStyles';
 
 const Registration = ({values, errors, touched, status }) => {
   const [error, setError]= useState('');
+  const [user, setUser] = useState('');
   const history= useHistory();
 
     useEffect(() =>{
@@ -19,7 +20,7 @@ const Registration = ({values, errors, touched, status }) => {
         status && values.setUser({
           ...values.user, ...status
         });
-        history.push('/login');
+        // history.push('/login');
         console.log('user from useEffect: ', values.user);
       }//end if/else
     }, [status])

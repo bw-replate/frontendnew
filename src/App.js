@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
+import Profile from './components/Profile/Profile';
 import {Route} from "react-router-dom";
 import Business from "./components/Profile/Business/Business";
 
@@ -24,13 +25,21 @@ function App() {
         <UserContext.Provider value= {user}>
           <Header/>
 
-          {/* site heading */}
-          <h1> Replate </h1>
+        <Route exact path="/">
+        <h1 className="mainHeading"> Replate </h1>
+          <Login/>
+        </Route>
 
-          {/* login component */}
+        <Route exact path="/profile">
+        <h1 className="mainHeading"> Profile </h1>
+          <Profile/>
+        </Route>
+
+        <Route exact path="/signup">
+        <h2 className="mainHeading"> Register Below </h2>
           <FormikRegistration user= {user} setUser= {setUser} />
+        </Route>
         </UserContext.Provider>
-        <Route exact path="/business" component={Business} />
       </div>
   );
 }//end App
