@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withFormik, Form, Field } from 'formik';
-import {Route, NavLink} from 'react-router-dom';
+import {Route, NavLink, useHistory} from 'react-router-dom';
 import axios from 'axios';
 import * as Yup from 'yup';
 
@@ -9,9 +9,15 @@ import * as Yup from 'yup';
 //styles
 const LoginForm = ({ values, touched, errors, status }) => {
   const [user, setUser] = useState([]);
+  const history = useHistory();
   useEffect(() => {
     console.log("status has changes", status);
     status && setUser(user => [...user, status]);
+    console.log("This is status", status);
+    if(status !== undefined){
+      history.push("/profile");
+      console.log("I am new status", status)
+    }
   }, [status]);
   return (
     <div className="userForm">
@@ -36,7 +42,7 @@ const LoginForm = ({ values, touched, errors, status }) => {
         {touched.password && errors.password && (
           <p className="errors">{errors.password}</p>
         )}
-        <NavLink to="/profile"><button type="submit">Login</button></NavLink>
+        <button type="submit">Login</button>
       </Form>
     </div>
   );
