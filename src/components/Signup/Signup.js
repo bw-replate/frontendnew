@@ -9,7 +9,6 @@ import {Error} from './SignupStyles';
 
 const Registration = ({values, errors, touched, status }) => {
   const [error, setError]= useState('');
-  const [user, setUser] = useState('');
   const history= useHistory();
 
     useEffect(() =>{
