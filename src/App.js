@@ -15,6 +15,7 @@ import {EditCurrentPickups} from "./components/Profile/Volunteer/EditCurrentPick
 import {AvailablePickups} from "./components/Profile/Volunteer/AvailablePickups";
 import {AcceptPickup} from "./components/Profile/Volunteer/AcceptPickup";
 import Business from "./components/Profile/Business/Business";
+import AddPlate from "./components/Profile/Business/AddPlate";
 
 
 //styles
@@ -67,6 +68,9 @@ function App() {
           <Route path="/viewpickup/:id"><AcceptPickup/></Route>
 
           <Route path="/business" component={Business} />
+
+          <Route path="/addplate" component={AddPlate} />
+          
         </Switch>
       </UserContext.Provider>
     </div>
