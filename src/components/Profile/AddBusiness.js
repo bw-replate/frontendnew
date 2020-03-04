@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { withFormik, Form, Field } from 'formik';
-import axios from 'axios';
+import {axiosWithAuth} from '../../utils/axiosWithAuth';
 import * as Yup from 'yup';
 
-const AddBusiness = ({ errors, touched, status }) => {
+function AddBusiness ({ errors, touched, status, values }) {
     const [users, setUsers] = useState([]);
 
     useEffect(() =>{
@@ -13,15 +13,40 @@ const AddBusiness = ({ errors, touched, status }) => {
         <div className="business-address">
             <Form>
                 <label htmlFor="business-add">
-                    Name
+                    Username
                     <Field
-                        id="businessAddress"
+                        id="username"
                         type="text"
-                        name="businessAddress"
+                        name="username"
+                        placeholder="username"
+                    />
+                    {touched.username && errors.username && (<p className="errors">{errors.username}</p>)}
+                    Business Number
+                    <Field
+                        id="phoneNumber"
+                        type="text"
+                        name="phoneNumber"
+                        placeholder="phoneNumber"
+                    />
+                    {touched.phoneNumber && errors.phoneNumber && (<p className="errors">{errors.phoneNumber}</p>)}
+                    Business Address
+                    <Field
+                        id="address"
+                        type="text"
+                        name="address"
                         placeholder="Address of Business"
                     />
-                    {touched.businessAddress && errors.businessAddress && (<p className="errors">{errors.businessAddress}</p>)}
-                    <span className="checkmark" />
+                    {touched.address && errors.address && (<p className="errors">{errors.address}</p>)}
+                </label>
+                <label htmlFor="name-add">
+                    Business Name
+                    <Field
+                        id="name"
+                        type="text"
+                        name="name"
+                        placeholder="Name of Business"
+                    />
+                    {touched.name && errors.name && (<p className="errors">{errors.name}</p>)}
                 </label>
                 <button type="submit">Update</button>
             </Form>
@@ -39,14 +64,20 @@ const AddBusiness = ({ errors, touched, status }) => {
 const FormikAddBusiness = withFormik({
     mapPropsToValues(props) {
         return {
-            name: props.businessAddress || ''
+            address: props.address || '',
+            name: props.name || '',
+            phoneNumber: props.phoneNumber || '',
+            username: props.username || ''
+
         };
     },
     validationSchema: Yup.object().shape({
-        businessAddress: Yup.string().required()
+        address: Yup.string().required(),
+        name: Yup.string().required()
     }),
-    handleSubmit({ setStatus, resetForm}) {
-        axios.post('https://reqres.in/api/users')
+    handleSubmit(values, { setStatus, resetForm}) {
+        axiosWithAuth()
+                .post('https://bw-replate-1.herokuapp.com/api/business/',values)
                 .then(res => {
                     setStatus(res.data);
                     resetForm();
