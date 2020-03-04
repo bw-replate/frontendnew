@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { Route, Switch } from "react-router-dom";
+
+import React, { useState, useEffect } from "react";
+import { Route } from "react-router-dom";
+
 
 //contexts
 import { UserContext } from "./Contexts/UserContext";
@@ -22,16 +24,30 @@ import AddPlate from "./components/Profile/Business/AddPlate";
 import "./App.css";
 
 function App() {
-  const [user, setUser] = useState({
+  //signup form state
+  const [createUser, setCreateUser] = useState({
     username: "",
     password: "",
     phoneNumber: ""
   });
 
+  //login from state
+  const [loggedInUser, setLoggedInUser] = useState('');
+
+  useEffect( () => {
+    setLoggedInUser(window.localStorage.getItem('loggedInUser') ? ' '+window.localStorage.getItem('loggedInUser') : '');
+    
+  }, [loggedInUser]);
+
   return (
     <div className="App">
-      <UserContext.Provider value={user}>
-        <Header />
+      <UserContext.Provider value={{loggedInUser, setLoggedInUser}}>
+        <Header loggedInUser= {loggedInUser}/>
+
+        <Route path="/signup">
+          <h2 className="mainHeadingSignUp"> Register Below </h2>
+          <FormikRegistration createUser={createUser} setCreateUser={setCreateUser} />
+        </Route>
 
         <Switch>
           <Route exact path="/">
@@ -44,19 +60,24 @@ function App() {
             <Profile />
           </Route>
 
+
+        <Route path="/logout">
+          <h2 className="mainHeadingLogout">See You At Your Next Replate</h2>
+          <Logout setLoggedInUser= {setLoggedInUser}/>
+        </Route>
+
+        
+
           <Route path="/signup">
             <h2 className="mainHeadingSignUp"> Register Below </h2>
             <FormikRegistration user={user} setUser={setUser} />
           </Route>
 
-          <Route path="/logout">
-            <h2 className="mainHeadingLogout">See You At Your Next Replate</h2>
-            <Logout />
-          </Route>
-
+          
           <Route path="/editcurrentpickup">
             <EditCurrentPickups/>
           </Route>
+
 
 
           <Route path="/availablepickups">
@@ -68,7 +89,12 @@ function App() {
 
           <Route path="/business" component={Business} />
 
+
+
+        <Route path="/viewpickup:1"><AcceptPickup /></Route>
+
           <Route path="/addplate" component={AddPlate} />
+
 
         </Switch>
       </UserContext.Provider>

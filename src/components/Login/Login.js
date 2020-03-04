@@ -15,10 +15,7 @@ function Login () {
       <StyledDiv>
         <h1 className="mainFormHeading">Login Below</h1>
       </StyledDiv>
-      <FormikLoginForm/>
-      <NavLink to="/signup">
-      <h2 className="accountSignUp">Don't Have An Account Yet?</h2>
-      </NavLink>
+      <FormikLoginForm />
     </div>
     
   )
