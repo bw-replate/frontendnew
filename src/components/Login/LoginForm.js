@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withFormik, Form, Field } from 'formik';
-import {Route, NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import * as Yup from 'yup';
 
@@ -9,23 +9,25 @@ import * as Yup from 'yup';
 //styles
 const LoginForm = ({ values, touched, errors, status }) => {
   const [user, setUser] = useState([]);
+
   useEffect(() => {
     console.log("status has changes", status);
     status && setUser(user => [...user, status]);
+
   }, [status]);
   return (
     <div className="userForm">
       <Form>
         <label htmlFor="username">Username</label>
-          <Field
-            id="username"
-            type="text"
-            name="username"
-            placeholder="username"
-          />
-          {touched.username && errors.username && (
-            <p className="errors">{errors.username}</p>
-          )}
+        <Field
+          id="username"
+          type="text"
+          name="username"
+          placeholder="username"
+        />
+        {touched.username && errors.username && (
+          <p className="errors">{errors.username}</p>
+        )}
         <label htmlFor="password">Password</label>
         <Field
           id="password"
@@ -49,33 +51,33 @@ const LoginForm = ({ values, touched, errors, status }) => {
 
 const FormikLoginForm = withFormik({
 
-    mapPropsToValues({ password, username }) {
-        return {
-          username: username || "",
-          password: password || ""
-        };
-      },
+  mapPropsToValues({ password, username }) {
+    return {
+      username: username || "",
+      password: password || ""
+    };
+  },
 
-    validationSchema: Yup.object().shape({
-        username: Yup.string().required(),
-        password: Yup.string().required()
-      }),
+  validationSchema: Yup.object().shape({
+    username: Yup.string().required(),
+    password: Yup.string().required()
+  }),
 
-   //handles submission
+  //handles submission
 
-   handleSubmit(values, { setStatus, resetForm, setSubmitting }) {
+  handleSubmit(values, { setStatus, resetForm, setSubmitting }) {
     console.log("submitting", values);
     console.log('Submitted Username:', values.username);
     console.log('Submitted Password:', values.password)
     //send submitted values
     axios.post("https://bw-replate-1.herokuapp.com/api/auth/login", values)
-    .then(response => {
-      console.log("success", response);
-      setStatus(response.data);
-      resetForm();
-    });
+      .then(response => {
+        console.log("success", response);
+        setStatus(response.data);
+        resetForm();
+      });
   }
 
-  })(LoginForm);
+})(LoginForm);
 
-  export default FormikLoginForm;
+export default FormikLoginForm;
