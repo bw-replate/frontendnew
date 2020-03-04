@@ -29,17 +29,18 @@ function App() {
     phoneNumber: ""
   });
 
-
   const [data, setData] = useState({
     address: "",
     phoneNumber: "",
     plates: "",
     businesses: ""
   })
+
   const [loggedInUser, setLoggedInUser] = useState('');
 
   useEffect(() => {
     setLoggedInUser(window.localStorage.getItem('loggedInUser') ? ' ' + window.localStorage.getItem('loggedInUser') : '');
+
 
   }, [loggedInUser]);
 
@@ -53,7 +54,10 @@ function App() {
           <FormikRegistration createUser={createUser} setCreateUser={setCreateUser} />
         </Route>
 
-        <Switch>
+
+     
+
+
           <Route exact path="/">
             <h1 className="mainHeading"> Replate </h1>
             <Login />
@@ -64,28 +68,31 @@ function App() {
             <Profile />
           </Route>
 
-          <Route path="/logout">
-            <h2 className="mainHeadingLogout">See You At Your Next Replate</h2>
-            <Logout setLoggedInUser={setLoggedInUser} />
-          </Route>
+
+
+        <Route path="/logout">
+          <h2 className="mainHeadingLogout">See You At Your Next Replate</h2>
+          <Logout setLoggedInUser= {setLoggedInUser}/>
+        </Route>
+
+         
 
           <Route path="/editcurrentpickup">
             <EditCurrentPickups />
           </Route>
+
+
 
           <Route path="/availablepickups">
             <h2 className="mainHeadingPickupsList">AvailablePickups</h2>
             <AvailablePickups />
           </Route>
 
-          <Route path="/viewpickup/:id"><AcceptPickup /></Route>
 
+      
+          <Route path="/viewpickup/:id"><AcceptPickup/></Route>
           <Route path="/business" component={Business} />
-
-          <Route path="/viewpickup:1"><AcceptPickup /></Route>
-
           <Route path="/addplate" component={AddPlate} />
-        </Switch>
 
       </UserContext.Provider>
     </div>
