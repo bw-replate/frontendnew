@@ -11,6 +11,7 @@ import {BusinessCont} from './BusinessStyles';
 const Business = () => {
     return (
         <BusinessCont className= "businessCont">
+          <h3>Business Profile</h3>
             <BusinessProfile/>
         </BusinessCont>
     )

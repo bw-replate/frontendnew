@@ -46,6 +46,8 @@ function App() {
 
   }, [loggedInUser]);
 
+
+  // for business profile
   useEffect(() => {
     axiosWithAuth()
       .get('https://bw-replate-1.herokuapp.com/api/business')
