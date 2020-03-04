@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import Login from "./components/Login/Login";
 import Footer from "./components/Footer/Footer";
 import { Route, Switch } from "react-router-dom";
@@ -8,20 +9,20 @@ import { UserContext } from "./Contexts/UserContext";
 
 //imports
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import FormikRegistration from "./components/Signup/Signup";
 import Profile from "./components/Profile/Profile";
+import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
+
 import {EditCurrentPickups} from "./components/Profile/Volunteer/EditCurrentPickups";
 import {AvailablePickups} from "./components/Profile/Volunteer/AvailablePickups";
 import {AcceptPickup} from "./components/Profile/Volunteer/AcceptPickup";
 import Business from "./components/Profile/Business/Business";
 import AddPlate from "./components/Profile/Business/AddPlate";
 
-
 //styles
 import "./App.css";
-
-
 
 function App() {
   const [user, setUser] = useState({
@@ -59,6 +60,7 @@ function App() {
           <Route path="/editcurrentpickup">
             <EditCurrentPickups/>
           </Route>
+
 
           <Route path="/availablepickups">
           <h2 className="mainHeadingPickupsList">AvailablePickups</h2>

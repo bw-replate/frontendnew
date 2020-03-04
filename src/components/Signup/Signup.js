@@ -13,13 +13,13 @@ const Registration = ({ values, errors, touched, status }) => {
 
   useEffect(() => {
     console.log('status: ', status);
-    if ( typeof status === 'object' && status !== undefined) {
+    if (typeof status === 'object' && status !== undefined) {
       status && values.setUser({
         ...values.user, ...status
       });
       setIsError(false);
       setMessage('Successful Registration');
-    }else if( status === 'duplicate' ){
+    } else if (status === 'duplicate') {
       setIsError(true);
       setMessage('That user already exists');
     }
@@ -66,11 +66,11 @@ const Registration = ({ values, errors, touched, status }) => {
       </Form>
       { // if there are errors show them
         isError ? <Error className='error'>{message}</Error> :
-        //if theres a message but no errors its a succes message, show it
+          //if theres a message but no errors its a succes message, show it
           message.length > 1 && isError === false ? <Message className='message'>{message}</Message> : null
       }
       { //if successful registration show button to goto log in page 
-      message === 'Successful Registration' ? <Link to= '/'><button>Log In</button></Link> : null}
+        message === 'Successful Registration' ? <Link to='/'><button>Log In</button></Link> : null}
     </div>
   );
 };
@@ -91,13 +91,13 @@ const FormikRegistration = withFormik({
     password: Yup.string().required(),
     // tos: Yup.bool().oneOf([true],"Please accept Terms of Service to Continue").required()
   }),
-  handleSubmit(values,{setStatus, resetForm }) {
+  handleSubmit(values, { setStatus, resetForm }) {
     axios.post('https://bw-replate-1.herokuapp.com/api/auth/register', values)
       .then(res => {
         setStatus(res);
         resetForm();
       })
-      .then( () => {setStatus('')} )
+      .then(() => { setStatus('') })
       .catch(err => {
         if (err.response.status === 500) {
           setStatus('duplicate');
@@ -105,7 +105,7 @@ const FormikRegistration = withFormik({
         }
         // console.log('Error: ', err.response.status);
       })
-      setStatus('');
+    setStatus('');
   }//end handleSubmit
 })(Registration)
 export default FormikRegistration;

@@ -8,14 +8,14 @@ const StyledDiv = styled.div`
     padding: 4%;
 `;
 
-const Error= styled.p`
+const Error = styled.p`
   color: red;
   font-size: 1rem;
 `
-;
-const Message= styled.p`
+  ;
+const Message = styled.p`
   color: green;
   font-size: 1rem;
 `;
 
-export {Error, Message, StyledDiv};
+export { Error, Message, StyledDiv };
