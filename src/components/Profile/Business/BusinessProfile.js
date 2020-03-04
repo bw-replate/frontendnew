@@ -5,6 +5,7 @@ import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 
 import {userContext, UserContext} from '../../../Contexts/UserContext';
 
+
 function BusinessProfile() {
   const {profiles}= useContext(UserContext);
   
@@ -19,6 +20,7 @@ function BusinessProfile() {
           <h3>{profile.address}</h3>
           <h3>{profile.phoneNumber}</h3>
           <h3>{profile.username}</h3>
+
         </div>
       ))}
     </div>

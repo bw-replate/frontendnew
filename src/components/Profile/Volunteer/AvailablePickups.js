@@ -21,11 +21,11 @@ export const AvailablePickups = () => {
     <div className="pickupsList">
       {pickups.map(pickup => {
         return (
-          <div>
-            <h2>{pickup.business_id}</h2>
-            <h2>{pickup.type}</h2>
-            <h2>{pickup.amount}</h2>
-            <h2>{pickup.preferredPickupTime}</h2>
+          <div className="pickupList">
+            <h2>Business Name: {pickup.id}</h2>
+            <h2>Food Type: {pickup.type}</h2>
+            <h2>Amount: {pickup.amount}</h2>
+            <h2>Pickup Time: {pickup.preferredPickupTime}</h2>
           </div>
         );
       })}
