@@ -19,7 +19,7 @@ const Registration = ({values, errors, touched, status }) => {
         status && values.setUser({
           ...values.user, ...status
         });
-        history.push('/login');
+        // history.push('/login');
         console.log('user from useEffect: ', values.user);
       }//end if/else
     }, [status])

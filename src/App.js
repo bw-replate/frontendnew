@@ -27,7 +27,6 @@ function App() {
         <UserContext.Provider value= {user}>
           <Header/>
 
-          {/* site heading */}
         <Route exact path="/">
         <h1 className="mainHeading"> Replate </h1>
           <Login/>
@@ -45,6 +44,7 @@ function App() {
           <FormikRegistration user= {user} setUser= {setUser} />
         </Route>
       </UserContext.Provider>
+
 
       </div>
   );
