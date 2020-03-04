@@ -6,7 +6,7 @@ const Error= styled.p`
 `
 ;
 const Message= styled.p`
-  color: red;
+  color: green;
   font-size: 1rem;
 `;
 
