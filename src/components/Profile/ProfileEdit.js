@@ -1,9 +1,11 @@
 import React from 'react'
 
-export const ProfileEdit = () => {
+const ProfileEdit = () => {
     return (
         <div>
             <h1>This is where you edit</h1>
         </div>
     )
 }
+
+export default ProfileEdit;
