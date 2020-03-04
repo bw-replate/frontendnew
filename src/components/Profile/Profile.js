@@ -4,6 +4,7 @@
 
 import React from "react";
 import axios from "axios";
+import { Route, NavLink } from 'react-router-dom'
 import { useState, useEffect, useContext } from "react";
 
 
@@ -24,7 +25,8 @@ const Profile = () => {
       <h2>{user}</h2>
       <h3>1234 Going Places Avenue, Placeholder, CA 80012</h3>
       <h3>{phoneNumber}</h3>
-      <button>Add Business</button>
+      <NavLink to="/addBusiness"><button>Add Business</button></NavLink>
+      <Route path="/addBusiness"></Route> 
       <button>Delete Profile</button>
       <button>Edit Profile</button>
 
