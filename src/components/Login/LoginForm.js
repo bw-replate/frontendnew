@@ -1,28 +1,51 @@
 import React, { useState, useEffect } from 'react';
+import {useHistory} from 'react-router-dom';
 import { withFormik, Form, Field } from 'formik';
-
 import {Route, NavLink, useHistory} from 'react-router-dom';
-
 import axios from 'axios';
 import * as Yup from 'yup';
 
-//imports
+//utils
+import {axiosWithAuth} from '../../utils/axiosWithAuth';
 
-//styles
+//components
+
+//stlyles
+import {Error, Message} from './LoginStyles';
+
 const LoginForm = ({ values, touched, errors, status }) => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({
+    usename: '',
+    password: ''
+  });
+  const [isError, setIsError] = useState(false);
+  const [message, setMessage] = useState('');
+  const history= useHistory();
 
   const history = useHistory();
   useEffect(() => {
-    console.log("status has changes", status);
-    status && setUser(user => [...user, status]);
-    console.log("This is status", status);
-    if(status !== undefined){
-      history.push("/profile");
-      console.log("I am new status", status)
-    }
+    // status && console.log("status:", status);
+    //if status contains a response, and is not undefined... proceed
+    if( typeof status === 'object' && status !== undefined ){
+      setIsError(false);
+      status && setUser({
+        ...user,
+        status
+      });
+      status && window.localStorage.setItem('token', status.token);
+      setIsError(false);
+      setMessage('Successful Registration');
+      setTimeout( () => {
+        //redirect
+        history.push('/profile');  
+      },1000 );//end setTimeout
+    }else if( status === 'error' ){
+      setIsError(true);
+      setMessage('Username or password is incorrect');
+    }//end if
 
   }, [status]);
+
   return (
     <div className="userForm">
       <Form>
@@ -36,6 +59,7 @@ const LoginForm = ({ values, touched, errors, status }) => {
         {touched.username && errors.username && (
           <p className="errors">{errors.username}</p>
         )}
+
         <label htmlFor="password">Password</label>
         <Field
           id="password"
@@ -48,21 +72,21 @@ const LoginForm = ({ values, touched, errors, status }) => {
         )}
         <button type="submit">Login</button>
       </Form>
+      {/* if error, show it */}
+        {isError ? <Error className= 'error'>{message}</Error>:
+          // if success message, show it
+          !isError && message ? <Message>{message}</Message> : null
+        }
+
     </div>
   );
 };
 
-//super component
-
-// The withFormik higher order component passes props and handler functions into your React component. All Formik forms need to be passed a handleSubmit prop. This should be a function which is called whenever the form is submitted. The withFormik wrapper automatically handles the onChange and onBlur functionality for you, however, this can be customised if needed.
-
-
 const FormikLoginForm = withFormik({
 
-  mapPropsToValues({ password, username }) {
+  mapPropsToValues({ }) {
     return {
-      username: username || "",
-      password: password || ""
+
     };
   },
 
@@ -71,20 +95,22 @@ const FormikLoginForm = withFormik({
     password: Yup.string().required()
   }),
 
-  //handles submission
-
   handleSubmit(values, { setStatus, resetForm, setSubmitting }) {
-    console.log("submitting", values);
-    console.log('Submitted Username:', values.username);
-    console.log('Submitted Password:', values.password)
+
     //send submitted values
-    axios.post("https://bw-replate-1.herokuapp.com/api/auth/login", values)
+    axiosWithAuth()
+      .post("https://bw-replate-1.herokuapp.com/api/auth/login", values)
       .then(response => {
         console.log("success", response);
         setStatus(response.data);
-        resetForm();
-      });
-  }
+        // resetForm();
+      })
+      .catch(err => {
+        setStatus('error');
+        console.log('Error: ', err);
+      })
+      setStatus('')
+  }//end handleSubmit
 
 })(LoginForm);
 

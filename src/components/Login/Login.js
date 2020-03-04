@@ -1,6 +1,5 @@
 import React from 'react';
-import axios from 'axios';
-import {Route, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 //styles
 import { StyledDiv } from './LoginStyles';
