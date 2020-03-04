@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
-import Profile from './components/Profile/Profile';
 import {Route} from "react-router-dom";
-import Business from "./components/Profile/Business/Business";
 
 //contexts
 import {UserContext} from './Contexts/UserContext';
@@ -11,17 +9,20 @@ import {UserContext} from './Contexts/UserContext';
 //imports
 import Header from './components/Header/Header';
 import FormikRegistration from './components/Signup/Signup';
+import Profile from './components/Profile/Profile';
+
 
 //styles
 import './App.css';
-import BusinessProfile from './components/Profile/Business/BusinessProfile';
 
 function App() {
-  const [user, setUser]= useState({ name: '', password: '', phoneNumber: '' });
+  const [user, setUser]= useState({
+    username: '',
+    password: '',
+    phoneNumber: ''
+  });
 
   return (
-
-
       <div className="App">
         <UserContext.Provider value= {user}>
           <Header/>
@@ -42,8 +43,8 @@ function App() {
         <h2 className="mainHeading"> Register Below </h2>
           <FormikRegistration user= {user} setUser= {setUser} />
         </Route>
-
       </UserContext.Provider>
+
 
       </div>
   );
