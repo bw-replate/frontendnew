@@ -1,8 +1,7 @@
 import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-//styles
-import './HeaderNavStyles';
+
 
 const HeaderNav = () => {
   return (
@@ -18,4 +17,4 @@ const HeaderNav = () => {
   )
 }// end HeaderNav
 
-export default withRouter(HeaderNav);
+export default HeaderNav;

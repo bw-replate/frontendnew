@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-
-import Login from "./components/Login/Login";
-import Footer from "./components/Footer/Footer";
 import { Route, Switch } from "react-router-dom";
 
 //contexts
@@ -31,18 +28,23 @@ function App() {
     phoneNumber: ""
   });
 
+  const [data, setData] = useState({
+    address: "",
+    phoneNumber: "",
+    plates: "",
+    businesses: ""
+  })
+
   return (
     <div className="App">
       <UserContext.Provider value={user}>
         <Header />
-
-        <Switch>
           <Route exact path="/">
             <h1 className="mainHeading"> Replate </h1>
             <Login />
           </Route>
 
-          <Route exact path="/profile">
+          <Route path="/profile">
             <h1 className="mainHeadingProfile">Replate</h1>
             <Profile />
           </Route>
@@ -67,6 +69,7 @@ function App() {
             <AvailablePickups/>
           </Route>
 
+        <Switch>
           <Route path="/viewpickup/:id"><AcceptPickup/></Route>
 
           <Route path="/business" component={Business} />
