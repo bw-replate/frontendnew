@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 //contexts
 import { UserContext } from "./Contexts/UserContext";
@@ -12,9 +12,9 @@ import Profile from "./components/Profile/Profile";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 
-import {EditCurrentPickups} from "./components/Profile/Volunteer/EditCurrentPickups";
-import {AvailablePickups} from "./components/Profile/Volunteer/AvailablePickups";
-import {AcceptPickup} from "./components/Profile/Volunteer/AcceptPickup";
+import { EditCurrentPickups } from "./components/Profile/Volunteer/EditCurrentPickups";
+import { AvailablePickups } from "./components/Profile/Volunteer/AvailablePickups";
+import { AcceptPickup } from "./components/Profile/Volunteer/AcceptPickup";
 import Business from "./components/Profile/Business/Business";
 import AddPlate from "./components/Profile/Business/AddPlate";
 
@@ -36,25 +36,27 @@ function App() {
     businesses: ""
   })
 
-  //login from state
   const [loggedInUser, setLoggedInUser] = useState('');
 
-  useEffect( () => {
-    setLoggedInUser(window.localStorage.getItem('loggedInUser') ? ' '+window.localStorage.getItem('loggedInUser') : '')
-    
+  useEffect(() => {
+    setLoggedInUser(window.localStorage.getItem('loggedInUser') ? ' ' + window.localStorage.getItem('loggedInUser') : '');
+
+
   }, [loggedInUser]);
 
   return (
     <div className="App">
-      <UserContext.Provider value={{loggedInUser, setLoggedInUser}}>
-        <Header loggedInUser= {loggedInUser}/>
+      <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
+        <Route path= '/'><Header loggedInUser={loggedInUser} /></Route>
 
         <Route path="/signup">
           <h2 className="mainHeadingSignUp"> Register Below </h2>
           <FormikRegistration createUser={createUser} setCreateUser={setCreateUser} />
         </Route>
 
+
      
+
 
           <Route exact path="/">
             <h1 className="mainHeading"> Replate </h1>
@@ -67,21 +69,25 @@ function App() {
           </Route>
 
 
+
         <Route path="/logout">
           <h2 className="mainHeadingLogout">See You At Your Next Replate</h2>
           <Logout setLoggedInUser= {setLoggedInUser}/>
         </Route>
 
          
+
           <Route path="/editcurrentpickup">
-            <EditCurrentPickups/>
+            <EditCurrentPickups />
           </Route>
+
 
 
           <Route path="/availablepickups">
-          <h2 className="mainHeadingPickupsList">AvailablePickups</h2>
-            <AvailablePickups/>
+            <h2 className="mainHeadingPickupsList">AvailablePickups</h2>
+            <AvailablePickups />
           </Route>
+
 
       
           <Route path="/viewpickup/:id"><AcceptPickup/></Route>
@@ -91,6 +97,6 @@ function App() {
       </UserContext.Provider>
     </div>
   );
-} //end App
+}
 
 export default App;
