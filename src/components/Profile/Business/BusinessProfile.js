@@ -1,23 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import { Link } from 'react-router-dom';
-import {withRouter} from 'react-router-dom';
-import {axiosWithAuth} from '../../../utils/axiosWithAuth';
+import { withRouter } from 'react-router-dom';
+import { axiosWithAuth } from '../../../utils/axiosWithAuth';
+
+import {userContext, UserContext} from '../../../Contexts/UserContext';
 
 
-function BusinessProfile({profile}){
-    return (
+function BusinessProfile() {
+  const {profiles}= useContext(UserContext);
+  
+  return (
+    <div>
+      <Link to='/addplate'>Add A Plate</Link>
+      <h2>Current Plates</h2>
+      This is business profiles information
+            {profiles.map(profile => (
         <div>
-            <Link to='/addplate'>Add A Plate</Link>
-            <h2>Current Plates</h2>
-            This is business profiles information
-            <div>
-                <h3>{profile.name}</h3>
-                <p>{profile.address}</p>
-                <p>{profile.phoneNumber}</p>
-                <p>{profile.username}</p>
-            </div>
+          <h3>{profile.name}</h3>
+          <h3>{profile.address}</h3>
+          <h3>{profile.phoneNumber}</h3>
+          <h3>{profile.username}</h3>
+
         </div>
-    )
+      ))}
+    </div>
+  )
 }
 
 export default withRouter(BusinessProfile);

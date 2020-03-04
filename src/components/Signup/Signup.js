@@ -93,6 +93,7 @@ const FormikRegistration = withFormik({
     phoneNumber: Yup.string().required(),
     password: Yup.string().required(),
   }),
+
   handleSubmit(values, { setStatus, resetForm }) {
     axios.post('https://bw-replate-1.herokuapp.com/api/auth/register', values)
       .then(res => {
@@ -106,6 +107,7 @@ const FormikRegistration = withFormik({
           resetForm();
         }//end if
       })
+      
     setStatus('');
   }//end handleSubmit
 })(Registration)

@@ -7,25 +7,15 @@ import {axiosWithAuth} from '../../../utils/axiosWithAuth';
 import BusinessProfile from './BusinessProfile';
 import AddPlate from './AddPlate.js'
 
-function Business() {
-    const [profiles, setProfiles] = useState([]);
-    useEffect(() => {
-        axiosWithAuth()
-                    .get('https://bw-replate-1.herokuapp.com/api/business')
-                    .then(res => {
-                        console.log('flag',res)
-                        setProfiles(res.data)
-                    })
-                    .catch(error => {
-                        console.log('err',error)
-                    })
-    }, [])
+//styles
+import {BusinessCont} from './BusinessStyles';
+
+const Business = () => {
     return (
-        <div>
-            {profiles.map(profile => (
-                <BusinessProfile profile={profile} key={profile} />
-            ))}
-        </div>
+        <BusinessCont className= "businessCont">
+            <BusinessProfile/>
+        </BusinessCont>
+
     )
 }
 

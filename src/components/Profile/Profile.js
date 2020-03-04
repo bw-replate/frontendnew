@@ -7,11 +7,10 @@ import axios from "axios";
 import { Route, NavLink } from 'react-router-dom'
 import { useState, useEffect, useContext } from "react";
 
-
 //imports
 import './profile.css';
 import {UserContext} from '../../Contexts/UserContext';
-
+import Business from './Business/Business';
 
 //styles
 import "./ProfileStyles";
@@ -20,8 +19,10 @@ import { VolunteerPickups } from "./Volunteer/VolunteerPickups";
 const Profile = () => {
   const {username, phoneNumber} = useContext(UserContext);
   let user = window.localStorage.getItem('loggedInUser');
+
   return (
     <div className="profileCont">
+      <Business />
       <h2>{user}</h2>
       <h3>1234 Going Places Avenue, Placeholder, CA 80012</h3>
       <h3>{phoneNumber}</h3>
