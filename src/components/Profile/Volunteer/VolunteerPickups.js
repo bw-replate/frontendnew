@@ -1,19 +1,22 @@
 import React,{useState, useEffect} from 'react';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
+
+//imports
+import "./volunteer.css";
 
 
 export const VolunteerPickups = () => {
 
     return (
-        <div>
+        <div className="volunteerOnlyPickups">
             <h1>Active Pickups</h1>
-            //dynamic routes most likely
-            <NavLink><h2>Sprouts</h2></NavLink>
+            {/* dynamic routes most likely */}
+            {/* <NavLink to="IndividualPickup"><h2>Sprouts</h2></NavLink> */}
+            <NavLink to="/editcurrentpickup">Pickup 1</NavLink>
             <h2>Pickup 2</h2>
-            <h2>Pickup 3</h2>
-            <h2>View or Get Pickups</h2>
-            <NavLink>View or Get New Pickups</NavLink>
+            <NavLink to="/availablepickups"><button>View or Get Pickups</button></NavLink>
+            {/* <NavLink>View or Get New Pickups</NavLink> */}
         </div>
     )
 }

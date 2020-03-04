@@ -10,8 +10,8 @@ const HeaderNav = () => {
       <nav>
         <div className="nav-links">
           <NavLink to='/'>Home</NavLink>
-          <NavLink to='/'>Logout</NavLink>
-          <NavLink to='/'>Display Username</NavLink>
+          <NavLink to='/logout'>Logout</NavLink>
+          <NavLink to='/profile'>Toni Placeholder</NavLink>
         </div>
       </nav>
     </>
