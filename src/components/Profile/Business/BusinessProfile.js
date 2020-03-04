@@ -1,5 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import {Route} from 'react-router-dom';
+import AddPlate from './AddPlate';
 import axios from 'axios';
 
 
@@ -9,6 +11,7 @@ export const BusinessProfile = () => {
             <NavLink>Add A Plate</NavLink>
             <h2>Current Plates</h2>
             This is business profiles information
+            <Route to='/addplate' component={AddPlate} />
         </div>
     )
 }

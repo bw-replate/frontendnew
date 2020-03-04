@@ -4,9 +4,10 @@ import React from 'react'
 import BusinessProfile from './BusinessProfile';
 import AddPlate from './AddPlate.js'
 
-export const Business = () => {
+const Business = () => {
     return (
         <div>
+            <p>Hello from business!!!!</p>
             <BusinessProfile/>
         </div>
     )

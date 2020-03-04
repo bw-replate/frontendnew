@@ -14,9 +14,10 @@ import FormikRegistration from './components/Signup/Signup';
 
 //styles
 import './App.css';
+import BusinessProfile from './components/Profile/Business/BusinessProfile';
 
 function App() {
-  const [user, setUser]= useState();
+  const [user, setUser]= useState({ name: '', password: '', phoneNumber: '' });
 
   return (
 
