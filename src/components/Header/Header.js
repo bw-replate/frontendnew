@@ -10,6 +10,9 @@ export default function Header () {
         <img src={logo} alt="replate icon"/>
       </div>
       <HeaderNav/>
+
+
+
     </div>
   )
 }//end Header
