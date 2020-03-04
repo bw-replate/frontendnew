@@ -2,14 +2,9 @@
 // - `volunteerName`: String
 // - `phoneNumber`
 
-<<<<<<< HEAD
-import React from 'react';
-import axios from 'axios';
-=======
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
->>>>>>> 46dabb2b40a1cae34eaa7c2e90b38a610f593bc9
 
 //imports
 import './profile.css';
@@ -19,21 +14,6 @@ import './profile.css';
 import "./ProfileStyles";
 import { VolunteerPickups } from "./Volunteer/VolunteerPickups";
 
-<<<<<<< HEAD
-const Profile = ({status}) => {
-  return (
-    
-    <div className= 'profileCont'>
-      <h2>{status}</h2>
-      <h2>Name</h2>
-      <h2>Address</h2>
-      <h2>Phone</h2>
-    <button>Edit Profile</button>
-    <button>Add Business</button>
-    <button>Logout</button>
-    <button>Delete Profile</button>
-    <button>Edit Profile</button>
-=======
 const Profile = props => {
   console.log(props.username);
   return (
@@ -65,7 +45,6 @@ const Profile = props => {
 
 
 
->>>>>>> 46dabb2b40a1cae34eaa7c2e90b38a610f593bc9
     </div>
   );
 }; // end Profile

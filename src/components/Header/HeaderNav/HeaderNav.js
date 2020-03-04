@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 //styles
 import './HeaderNavStyles';
@@ -18,4 +18,4 @@ const HeaderNav = () => {
   )
 }// end HeaderNav
 
-export default HeaderNav;
+export default withRouter(HeaderNav);
