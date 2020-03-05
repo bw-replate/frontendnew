@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { withFormik, Form, Field } from 'formik';
 import {axiosWithAuth} from '../../../utils/axiosWithAuth';
 import * as Yup from 'yup';
 import {useHistory} from 'react-router-dom';
+import {UserContext} from '../../../Contexts/UserContext';
 
 function AddBusiness ({ errors, touched, status, values }) {
     const [users, setUsers] = useState([]);
     const history= useHistory();
+    const {getBusinesses}= useContext(UserContext);
 
     const handleFinished= () => {
-      history.push('/profile');
+      history.push(`/profile`);
+      getBusinesses();
     }//end handleFinished
 
     useEffect(() =>{

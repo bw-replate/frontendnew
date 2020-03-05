@@ -62,17 +62,9 @@ function App() {
 
   }//end getBusinesses
 
+    //get businessses on first page load
   useEffect(() => {
     getBusinesses();
-    // axiosWithAuth()
-    //   .get('https://bw-replate-1.herokuapp.com/api/business')
-    //   .then(res => {
-    //     console.log('flag', res)
-    //     setProfiles(res.data)
-    //   })
-    //   .catch(error => {
-    //     console.log('err', error)
-    //   })
   }, [])
 
   const deleteBusiness = (id) => {
@@ -92,7 +84,7 @@ function App() {
 
   const editBusiness = (id) => {
     console.log('Edit business');
-
+    
 
   }//end editBusiness
 
