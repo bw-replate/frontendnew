@@ -36,7 +36,7 @@ const Profile = ({loggedInUser}) => {
       <h3>1234 Going Places Avenue, Placeholder, CA 80012</h3>
       <h3>{phoneNumber}</h3>
       <NavLink to="/addbusiness"><button>Add Business</button></NavLink>
-      <Link to={`/business/${curUser}`}><button>View Your Profiles</button></Link>
+      <Link to={`/business/${curUser}`}><button>Business Profiles</button></Link>
       {/* <Route path="/addBusiness"></Route>  */}
       <button>Delete Profile</button>
       <button>Edit Profile</button>
