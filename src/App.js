@@ -19,7 +19,7 @@ import { AcceptPickup } from "./components/Profile/Volunteer/AcceptPickup";
 import Business from "./components/Profile/Business/Business";
 
 import FormikAddPlateForm from "./components/Profile/Business/AddPlate";
-import FormikAddBusiness from './components/Profile/AddBusiness';
+import FormikAddBusiness from './components/Profile/Business/AddBusiness';
 
 //styles
 import "./App.css";
