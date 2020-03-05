@@ -18,7 +18,7 @@ import { AvailablePickups } from "./components/Profile/Volunteer/AvailablePickup
 import { AcceptPickup } from "./components/Profile/Volunteer/AcceptPickup";
 import Business from "./components/Profile/Business/Business";
 import { AddPlate } from "./components/Profile/Business/AddPlate";
-import FormikAddBusiness from './components/Profile/AddBusiness';
+import FormikAddBusiness from './components/Profile/Business/AddBusiness';
 
 //styles
 import "./App.css";
@@ -48,7 +48,8 @@ function App() {
 
 
   // for business profile
-  useEffect(() => {
+  const getBusinesses= () => {
+    console.log('getBusinesses');
     axiosWithAuth()
       .get('https://bw-replate-1.herokuapp.com/api/business')
       .then(res => {
@@ -58,6 +59,20 @@ function App() {
       .catch(error => {
         console.log('err', error)
       })
+
+  }//end getBusinesses
+
+  useEffect(() => {
+    getBusinesses();
+    // axiosWithAuth()
+    //   .get('https://bw-replate-1.herokuapp.com/api/business')
+    //   .then(res => {
+    //     console.log('flag', res)
+    //     setProfiles(res.data)
+    //   })
+    //   .catch(error => {
+    //     console.log('err', error)
+    //   })
   }, [])
 
   const deleteBusiness = (id) => {
@@ -68,6 +83,7 @@ function App() {
       .then(delRes => {
         console.log('delRes', delRes);
         console.log('id', id);
+        getBusinesses();
       })
       .catch(delErr => {
         console.log('delError')
@@ -88,7 +104,8 @@ function App() {
         setLoggedInUser,
         data,
         deleteBusiness,
-        editBusiness
+        editBusiness,
+        getBusinesses
       }}>
         <Route path='/'><Header loggedInUser={loggedInUser} /></Route>
 

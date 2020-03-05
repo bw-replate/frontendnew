@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withFormik, Form, Field } from 'formik';
-import {axiosWithAuth} from '../../utils/axiosWithAuth';
+import {axiosWithAuth} from '../../../utils/axiosWithAuth';
 import * as Yup from 'yup';
 import {useHistory} from 'react-router-dom';
 
