@@ -134,6 +134,10 @@ function App() {
             <FormikAddPlateForm/>
           </Route>
 
+          <Route path="/availablepickups/">
+            <h2 className="mainHeadingAddPlate">Available Pickups</h2>
+            <AvailablePickups/>
+          </Route>
 
       
           <Route path="/viewpickup/:id"><AcceptPickup/></Route>
