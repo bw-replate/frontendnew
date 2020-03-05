@@ -15,10 +15,15 @@ const LoginForm = ({ values, touched, errors, status }) => {
   const [user, setUser] = useState('');
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState('');
-
   const history = useHistory();
   let curUser= '';
+
+  if( window.localStorage.getItem('token') ){
+    history.push('/profile');
+  }
+
   useEffect(() => {
+    
     // status && console.log("status message:", status.message.slice(8));
     //if status contains a response, and is not undefined... proceed
     if (typeof status === 'object' && status !== undefined) {
