@@ -65,7 +65,7 @@ const FormikAddPlateForm = withFormik({
       return {
         type: type || '',
         amount: amount || '',
-        preferredPickupTime: preferredPickupTime || '',
+        preferredPickupTime:'2020-03-01T04:29:25.414Z',
         businessId: businessId || ''
       };
     },
