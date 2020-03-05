@@ -90,7 +90,7 @@ function App() {
     history.push('/editplate')
 
   }//end editBusiness
-
+  console.log(loggedInUser)
   return (
     <div className="App">
       <UserContext.Provider value={{
@@ -116,7 +116,7 @@ function App() {
 
         <Route path="/profile">
           <h1 className="mainHeadingProfile">Replate</h1>
-          <Profile />
+          <Profile loggedInUser={loggedInUser} />
         </Route>
 
         <Route path="/logout">
@@ -141,7 +141,7 @@ function App() {
 
       
           <Route path="/viewpickup/:id"><AcceptPickup/></Route>
-          <Route path="/business" component={Business} />
+          <Route path="/business/:username" component={Business} />
           <Route exact path="/addbusiness" component={FormikAddBusiness} />
           <Route exact path= '/editplate'>
             <EditPlate />
