@@ -13,6 +13,7 @@ import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import { axiosWithAuth } from './utils/axiosWithAuth';
 import EditBusiness from './components/Profile/Business/Editbusiness';
+import ProfileEdit from './components/Profile/ProfileEdit';
 
 import { EditCurrentPickups } from "./components/Profile/Volunteer/EditCurrentPickups";
 import { AvailablePickups } from "./components/Profile/Volunteer/AvailablePickups";
@@ -154,6 +155,10 @@ function App() {
           <Route exact path="/addbusiness" component={FormikAddBusiness} />
           <Route exact path= '/editbusiness'>
             <EditBusiness />
+          </Route>
+
+          <Route exact path= '/editprofile'>
+            <ProfileEdit />
           </Route>
 
       </UserContext.Provider>

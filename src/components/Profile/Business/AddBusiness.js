@@ -83,7 +83,7 @@ const FormikAddBusiness = withFormik({
   }),
   handleSubmit(values, { setStatus, resetForm }) {
     axiosWithAuth()
-      .post('https://bw-replate-1.herokuapp.com/api/business/', values)
+      .post('https://bw-replate-1.herokuapp.com/api/business', values)
       .then(res => {
         setStatus(res.data);
         console.log('addBusinessRes: ', res);
