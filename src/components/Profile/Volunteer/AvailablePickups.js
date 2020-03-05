@@ -26,6 +26,9 @@ export const AvailablePickups = () => {
             <h2>Food Type: {pickup.type}</h2>
             <h2>Amount: {pickup.amount}</h2>
             <h2>Pickup Time: {pickup.preferredPickupTime}</h2>
+            <button>Accept</button>
+            <button>Completed</button>
+            <button>Delete</button>
           </div>
         );
       })}
