@@ -10,11 +10,6 @@ import {BusinessDisplay} from './BusinessStyles';
 function BusinessProfile() {
   const {getBusinesses, profiles, deleteBusiness, editBusiness}= useContext(UserContext);
 
-  useEffect(() => {
-
-  }, [profiles])
-  
-
   return (
     <div>
       <Link to='/addplate'>Add A Plate</Link>
