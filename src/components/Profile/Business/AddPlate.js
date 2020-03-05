@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import { NavLink, useHistory } from "react-router-dom";
 import * as Yup from "yup";
+import axios from 'axios';
 
-//utils
+
 import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 import Business from "./Business";
 
 const AddPlate = ({ values, touched, errors, status }) => {
-  const [plate, addPlate] = useState([])
-  
+const [plate, addPlate] = useState([])
+
 
   useEffect(() => {
     console.log('status', status)
@@ -59,6 +60,7 @@ const AddPlate = ({ values, touched, errors, status }) => {
 };
 
 const FormikAddPlateForm = withFormik({
+
     mapPropsToValues({amount, type, preferredPickupTime, businessId }) {
       return {
         type: type || '',
@@ -68,12 +70,14 @@ const FormikAddPlateForm = withFormik({
       };
     },
 
+
   validationSchema: Yup.object().shape({
     businessId: Yup.string().required(),
     amount: Yup.string().required(),
     type: Yup.string().required(),
     preferredPickupTime: Yup.string().required()
   }),
+
 
     handleSubmit(values, { setStatus, resetForm, setSubmitting }) {
 
@@ -92,6 +96,11 @@ const FormikAddPlateForm = withFormik({
           console.log('Error: ', err);
         });
     }//end handleSubmit
+
 })(AddPlate);
 
 export default FormikAddPlateForm;
+
+
+
+
