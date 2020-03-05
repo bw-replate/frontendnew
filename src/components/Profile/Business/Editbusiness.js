@@ -20,13 +20,15 @@ function EditBusiness() {
     e.preventDefault();
     console.log('formValues: ', formValues);
     axiosWithAuth()
-      .put(`https://bw-replate-1.herokuapp.com/api/business/${businessToEdit.id}`, formValues)
+      .put(`https://bw-replate-1.herokuapp.com/api/business/${businessToEdit.id}`, {
+        phoneNumber: formValues.phoneNumber,
+        address: formValues.address,
+        name: formValues.name
+      })
       .then(editBusRes => {
+        history.push('/profile');
         console.log('editBusRes: ', editBusRes);
         // resetForm();
-        axiosWithAuth()
-          .get(`https:bw-replate-1.herokuapp.com/api/business/${businessToEdit.id}`)
-          .then(res => {console.log('res',res)})
       })
       .catch(editBusErr => console.log('editBusErr', editBusErr.response))
      
@@ -43,10 +45,9 @@ function EditBusiness() {
     <div className="business-address">
       {console.log('formValue: ', formValues)}
       <form onSubmit= {handleSubmit}>
-
+      {console.log('formValues-2: ', formValues)}
         <label htmlFor= 'username'>Username</label>
-          <input
-            onChange= {handleChange}
+          <input disabled style= {{backgroundColor: '#eeeeee'}}
             value={formValues.username}
             id="username"
             type="text"
