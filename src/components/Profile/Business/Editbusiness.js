@@ -5,7 +5,7 @@ import { UserContext } from '../../../Contexts/UserContext';
 
 function EditBusiness() {
   const history = useHistory();
-  const { getBusinesses, businessToEdit, setBusinessToEdit } = useContext(UserContext);
+  const {setEditing, getBusinesses, businessToEdit, setBusinessToEdit } = useContext(UserContext);
   const [formValues, setFormValues] = useState({...businessToEdit});
 
   console.log('businessToEdit', businessToEdit.user_id);
@@ -15,9 +15,10 @@ function EditBusiness() {
     });
 
   }, []);
-
+  
   const handleSubmit= e =>{
     e.preventDefault();
+
     console.log('formValues: ', formValues);
     axiosWithAuth()
       .put(`https://bw-replate-1.herokuapp.com/api/business/${businessToEdit.id}`, {
@@ -26,6 +27,7 @@ function EditBusiness() {
         name: formValues.name
       })
       .then(editBusRes => {
+        getBusinesses();
         history.push('/profile');
         console.log('editBusRes: ', editBusRes);
         // resetForm();
