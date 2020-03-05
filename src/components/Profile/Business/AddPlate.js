@@ -11,6 +11,7 @@ const AddPlate = ({ values, touched, errors, status }) => {
   
 
   useEffect(() => {
+    console.log('status', status)
       status && addPlate(plate => [...plate, status]);
   }, [status]);
 
