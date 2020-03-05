@@ -49,8 +49,8 @@ const LoginForm = ({ values, touched, errors, status }) => {
   return (
     <div className="userForm">
 
-    {console.log('loggedInUser:', user)}
-    {console.log('status:', status)}
+    {/* {console.log('loggedInUser:', user)}
+    {console.log('status:', status)} */}
 
       {/* if error, show it */
         isError ? <Error className='error'>{message}</Error> :
