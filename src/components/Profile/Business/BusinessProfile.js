@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 
-import {userContext, UserContext} from '../../../Contexts/UserContext';
+import {UserContext} from '../../../Contexts/UserContext';
 
 //styles
 import {BusinessDisplay} from './BusinessStyles';
 
 function BusinessProfile() {
-  const {profiles}= useContext(UserContext);
+  const {profiles, deleteBusiness, editBusiness}= useContext(UserContext);
 
   return (
     <div>
@@ -17,11 +16,13 @@ function BusinessProfile() {
       <h2>Current Plates</h2>
       This is business profiles information
             {profiles.map(profile => (
-        <BusinessDisplay className= 'businessDisplay'>
+        <BusinessDisplay key= {Date.now()*Math.random()} className= 'businessDisplay'>
           <h3>{profile.name}</h3>
           <h3>{profile.address}</h3>
           <h3>{profile.phoneNumber}</h3>
           <h3>{profile.username}</h3>
+          <button onClick= {() => editBusiness(profile.id)}>Edit</button>
+          <button onClick= {() => deleteBusiness(profile.id)}>Delete</button>
         </ BusinessDisplay>
       ))}
     </div>
