@@ -27,7 +27,7 @@ function BusinessProfile() {
           <h3>{profile.address}</h3>
           <h3>{profile.phoneNumber}</h3>
           <h3>{profile.username}</h3>
-          <button onClick= {() => editBusiness(profile.id)}>Edit</button>
+          <button onClick= {() => editBusiness(profile)}>Edit</button>
           <button onClick= {() => deleteBusiness(profile.id)}>Delete</button>
         </ BusinessDisplay>
       ))}
