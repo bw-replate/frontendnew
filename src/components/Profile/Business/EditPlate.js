@@ -2,15 +2,13 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import { NavLink, useHistory } from "react-router-dom";
 import * as Yup from "yup";
-import axios from 'axios';
 
-
+//utils
 import { axiosWithAuth } from '../../../utils/axiosWithAuth';
-import Business from "./Business";
 
 const AddPlate = ({ values, touched, errors, status }) => {
-const [plate, addPlate] = useState([])
-
+  const [plate, addPlate] = useState()
+  
 
   useEffect(() => {
     console.log('status', status)
@@ -30,9 +28,9 @@ const [plate, addPlate] = useState([])
           <p className="errors">{errors.amount}</p>
         )}
 
-        <label htmlFor="preferredPickupTime">Preferred Pickup Time</label>
-        <Field id="preferredPickupTime" type="text" name="preferredPickupTime" placeholder="pickup time" />
-        {touched.preferredPickupTime && errors.preferredPickupTime && <p className="errors">{errors.preferredPickupTime}</p>}
+        <label htmlFor="time">Preferred Pickup Time</label>
+        <Field id="time" type="text" name="time" placeholder="pickup time" />
+        {touched.time && errors.time && <p className="errors">{errors.time}</p>}
 
         <label htmlFor="id">Business Id</label>
         <Field
@@ -46,46 +44,34 @@ const [plate, addPlate] = useState([])
         )}
         <button type="submit">Add Plate</button>
       </Form>   
-      {plate.map((item, index) => {
-        return (
-          <ul key={index}>
-            <li>Type: {item.type}</li>
-            <li>Name: {item.name}</li>
-            <li>Time: {item.preferredPickupTime}</li>
-          </ul>
-        )
-      })}
     </div>
   );
 };
 
 const FormikAddPlateForm = withFormik({
-
-    mapPropsToValues({amount, type, preferredPickupTime, businessId }) {
+    mapPropsToValues({amount, type, time, businessId }) {
       return {
         type: type || '',
         amount: amount || '',
-        preferredPickupTime: preferredPickupTime || '',
+        time: time || '',
         businessId: businessId || ''
       };
     },
-
 
   validationSchema: Yup.object().shape({
     businessId: Yup.string().required(),
     amount: Yup.string().required(),
     type: Yup.string().required(),
-    preferredPickupTime: Yup.string().required()
+    time: Yup.string().required()
   }),
-
 
     handleSubmit(values, { setStatus, resetForm, setSubmitting }) {
 
         console.log('submitting', values);
-      const newPlate={ business_id: values.businessId, amount: values.amount, type: values.type, preferredPickupTime: values.preferredPickupTime }
+
       //send submitted values
       axiosWithAuth()
-        .post("https://bw-replate-1.herokuapp.com/api/pickupRequest", newPlate)
+        .post("https://bw-replate-1.herokuapp.com/api/pickupRequest", values)
         .then(response => {
           console.log("success", response);
           setStatus(response);
@@ -96,11 +82,6 @@ const FormikAddPlateForm = withFormik({
           console.log('Error: ', err);
         });
     }//end handleSubmit
-
 })(AddPlate);
 
 export default FormikAddPlateForm;
-
-
-
-

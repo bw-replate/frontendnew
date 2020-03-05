@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 
 //contexts
 import { UserContext } from "./Contexts/UserContext";
@@ -12,6 +12,7 @@ import Profile from "./components/Profile/Profile";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import { axiosWithAuth } from './utils/axiosWithAuth';
+import EditBusiness from './components/Profile/Business/Editbusiness';
 
 import { EditCurrentPickups } from "./components/Profile/Volunteer/EditCurrentPickups";
 import { AvailablePickups } from "./components/Profile/Volunteer/AvailablePickups";
@@ -39,8 +40,11 @@ function App() {
     businesses: ""
   })
 
+  // state
   const [loggedInUser, setLoggedInUser] = useState('');
   const [profiles, setProfiles] = useState([]);
+  const [businessToEdit, setBusinessToEdit] = useState({});
+  const history= useHistory();
 
   //for Log in page
   useEffect(() => {
@@ -83,12 +87,13 @@ function App() {
       })
   }//end deleteBusiness
 
-  const editBusiness = (id) => {
+  const editBusiness = (profile) => {
     console.log('Edit business');
-    
+    setBusinessToEdit(profile);
+    history.push('/editbusiness')
 
   }//end editBusiness
-
+  console.log(loggedInUser)
   return (
     <div className="App">
       <UserContext.Provider value={{
@@ -98,6 +103,7 @@ function App() {
         data,
         deleteBusiness,
         editBusiness,
+        businessToEdit,
         getBusinesses
       }}>
         <Route path='/'><Header loggedInUser={loggedInUser} /></Route>
@@ -114,7 +120,7 @@ function App() {
 
         <Route path="/profile">
           <h1 className="mainHeadingProfile">Replate</h1>
-          <Profile />
+          <Profile loggedInUser={loggedInUser} />
         </Route>
 
         <Route path="/availablepickups">
@@ -137,11 +143,18 @@ function App() {
             <FormikAddPlateForm/>
           </Route>
 
+          <Route path="/availablepickups/">
+            <h2 className="mainHeadingAddPlate">Available Pickups</h2>
+            <AvailablePickups/>
+          </Route>
 
       
           <Route path="/viewpickup/:id"><AcceptPickup/></Route>
-          <Route path="/business" component={Business} />
+          <Route path="/business/:username" component={Business} />
           <Route exact path="/addbusiness" component={FormikAddBusiness} />
+          <Route exact path= '/editbusiness'>
+            <EditBusiness />
+          </Route>
 
       </UserContext.Provider>
     </div>
