@@ -5,7 +5,7 @@ import { UserContext } from '../../../Contexts/UserContext';
 
 function EditBusiness() {
   const history = useHistory();
-  const { getBusinesses, businessToEdit, setBusinessToEdit } = useContext(UserContext);
+  const {setEditing, getBusinesses, businessToEdit, setBusinessToEdit } = useContext(UserContext);
   const [formValues, setFormValues] = useState({...businessToEdit});
 
   console.log('businessToEdit', businessToEdit.user_id);
@@ -15,17 +15,20 @@ function EditBusiness() {
     });
 
   }, []);
-
+  
   const handleSubmit= e =>{
     e.preventDefault();
+
     console.log('formValues: ', formValues);
     axiosWithAuth()
       .put(`https://bw-replate-1.herokuapp.com/api/business/${businessToEdit.id}`, {
-        username: formValues.username,
+        phoneNumber: formValues.phoneNumber,
         address: formValues.address,
-        phoneNumber: formValues.phoneNumber
+        name: formValues.name
       })
       .then(editBusRes => {
+        getBusinesses();
+        history.push('/profile');
         console.log('editBusRes: ', editBusRes);
         // resetForm();
       })
@@ -44,10 +47,9 @@ function EditBusiness() {
     <div className="business-address">
       {console.log('formValue: ', formValues)}
       <form onSubmit= {handleSubmit}>
-
+      {console.log('formValues-2: ', formValues)}
         <label htmlFor= 'username'>Username</label>
-          <input
-            onChange= {handleChange}
+          <input disabled style= {{backgroundColor: '#eeeeee'}}
             value={formValues.username}
             id="username"
             type="text"
@@ -75,7 +77,7 @@ function EditBusiness() {
             placeholder="Address of Business"
           />
 
-        {/* <label htmlFor= 'name'>Business Name</label>
+        <label htmlFor= 'name'>Business Name</label>
           <input
             onChange= {handleChange}
             value={formValues.name}
@@ -83,8 +85,9 @@ function EditBusiness() {
             type="text"
             name="name"
             placeholder="Name of Business"
-          /> */}
+          />
         <button type="submit">Update</button>
+        <button type= 'button' onClick= {() => {history.push('/profile')}}>cancel</button>
       </form>
     </div>
   );

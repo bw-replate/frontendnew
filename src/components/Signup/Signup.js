@@ -35,8 +35,8 @@ const Registration = ({ values, errors, touched, status }) => {
           message.length > 1 && isError === false ? <Message className='message'>{message}</Message> : null
       }
 
-      <Form>
-        <label htmlFor="username">
+      <Form style={{background: 'red', width: '50%', margin: '0 auto'}}>
+        <label htmlFor="username" style={{textAlign: 'center'}}>
           Name
           <Field
             id="username"
@@ -46,7 +46,7 @@ const Registration = ({ values, errors, touched, status }) => {
           />
           {touched.username && errors.username && (<p classusername="errors">{errors.username}</p>)}
         </label>
-        <label htmlFor="password">
+        <label htmlFor="password" style={{textAlign: 'center'}}>
           Password
           <Field
             id="password"
@@ -56,7 +56,7 @@ const Registration = ({ values, errors, touched, status }) => {
           />
           {touched.password && errors.password && (<p className="errors">{errors.password}</p>)}
         </label>
-        <label htmlFor="phoneNumber">
+        <label htmlFor="phoneNumber" style={{textAlign: 'center'}}>
           Phone
           <Field
             id="phoneNumber"
@@ -67,7 +67,7 @@ const Registration = ({ values, errors, touched, status }) => {
           {touched.phoneNumber && errors.phoneNumber && (<p className="errors">{errors.phoneNumber}</p>)}
         </label>
 
-        <button type="submit">Register</button>
+        <button type="submit"  style={{margin: '0 auto' }}>Register</button>
       </Form>
       
       <p>Already have an account? <Link to= '/'>Log in</Link></p>

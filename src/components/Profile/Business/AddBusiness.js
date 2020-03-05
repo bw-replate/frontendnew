@@ -20,8 +20,8 @@ function AddBusiness({ errors, touched, status, values }) {
   }, [status]);
 
   return (
-    <div className="business-address">
-      <Form>
+    <div className="business-address" style={{textAlign: 'center'}}>
+      <Form style={{width: '50%', background: 'yellow', margin: '0 auto' }}>
         <label htmlFor='username'>Username</label>
         <Field
           id="username"
@@ -83,7 +83,7 @@ const FormikAddBusiness = withFormik({
   }),
   handleSubmit(values, { setStatus, resetForm }) {
     axiosWithAuth()
-      .post('https://bw-replate-1.herokuapp.com/api/business/', values)
+      .post('https://bw-replate-1.herokuapp.com/api/business', values)
       .then(res => {
         setStatus(res.data);
         console.log('addBusinessRes: ', res);
