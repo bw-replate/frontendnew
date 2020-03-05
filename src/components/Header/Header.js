@@ -1,15 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import HeaderNav from './HeaderNav/HeaderNav';
 import logo from "./replateIcon.PNG";
 
-export default function Header ({loggedInUser}) {
+import {UserContext} from '../../Contexts/UserContext';
+
+export default function Header ({}) {
   return (
     <div className= 'headerCont'>
       <div>
         <img src={logo} alt="replate icon"/>
       </div>
 
-      <HeaderNav loggedInUser= {loggedInUser}/>
+      <HeaderNav/>
 
     </div>
   )

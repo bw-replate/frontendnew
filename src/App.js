@@ -46,6 +46,7 @@ function App() {
   const [profiles, setProfiles] = useState([]);
   const [businessToEdit, setBusinessToEdit] = useState({});
   const history= useHistory();
+  const [loggedIn, setLoggedIn]= useState(false); 
 
   //for Log in page
   useEffect(() => {
@@ -99,6 +100,8 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={{
+        loggedIn,
+        setLoggedIn,
         profiles,
         loggedInUser,
         setLoggedInUser,
