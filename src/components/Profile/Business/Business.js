@@ -5,7 +5,7 @@ import {axiosWithAuth} from '../../../utils/axiosWithAuth';
 
 //imports
 import BusinessProfile from './BusinessProfile';
-import AddPlate from './AddPlate.js'
+import FormikAddPlateForm from './AddPlate.js'
 
 //styles
 import {BusinessCont} from './BusinessStyles';
@@ -15,7 +15,6 @@ const Business = () => {
         <BusinessCont className= "businessCont">
             <BusinessProfile/>
         </BusinessCont>
-
     )
 }
 
