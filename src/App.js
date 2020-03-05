@@ -109,7 +109,7 @@ function App() {
         <Route path='/'><Header loggedInUser={loggedInUser} /></Route>
 
         <Route path="/signup">
-          <h2 className="mainHeadingSignUp"> Register Below </h2>
+          <h2 className="mainHeadingSignUp" style={{textAlign: 'center', fontSize: '3rem'}}> Register Below </h2>
           <FormikRegistration createUser={createUser} setCreateUser={setCreateUser} />
         </Route>
 
