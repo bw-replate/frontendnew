@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 
 //contexts
 import { UserContext } from "./Contexts/UserContext";
@@ -12,6 +12,7 @@ import Profile from "./components/Profile/Profile";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import { axiosWithAuth } from './utils/axiosWithAuth';
+import EditPlate from './components/Profile/Business/';
 
 import { EditCurrentPickups } from "./components/Profile/Volunteer/EditCurrentPickups";
 import { AvailablePickups } from "./components/Profile/Volunteer/AvailablePickups";
@@ -41,6 +42,7 @@ function App() {
 
   const [loggedInUser, setLoggedInUser] = useState('');
   const [profiles, setProfiles] = useState([]);
+  const history= useHistory();
 
   //for Log in page
   useEffect(() => {
@@ -85,7 +87,7 @@ function App() {
 
   const editBusiness = (id) => {
     console.log('Edit business');
-    
+    history.push('/editplate')
 
   }//end editBusiness
 
@@ -137,6 +139,9 @@ function App() {
           <Route path="/viewpickup/:id"><AcceptPickup/></Route>
           <Route path="/business" component={Business} />
           <Route exact path="/addbusiness" component={FormikAddBusiness} />
+          <Route exact path= '/editplate'>
+            <EditPlate />
+          </Route>
 
       </UserContext.Provider>
     </div>
