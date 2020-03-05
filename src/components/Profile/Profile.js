@@ -26,8 +26,8 @@ const Profile = () => {
       <h2>{user}</h2>
       <h3>1234 Going Places Avenue, Placeholder, CA 80012</h3>
       <h3>{phoneNumber}</h3>
-      <NavLink to="/addBusiness"><button>Add Business</button></NavLink>
-      <Route path="/addBusiness"></Route> 
+      <NavLink to="/addbusiness"><button>Add Business</button></NavLink>
+      {/* <Route path="/addBusiness"></Route>  */}
       <button>Delete Profile</button>
       <button>Edit Profile</button>
 
