@@ -5,8 +5,8 @@ import {axiosWithAuth} from '../../../utils/axiosWithAuth';
 
 //imports
 import BusinessProfile from './BusinessProfile';
-import AddPlate from './AddPlate.js'
-import {UserContext} from '../../../Contexts/UserContext';
+
+import FormikAddPlateForm from './AddPlate.js'
 
 //styles
 import {BusinessCont} from './BusinessStyles';
@@ -18,7 +18,6 @@ const Business = () => {
           <h3>Business Profile</h3>
             <BusinessProfile />
         </BusinessCont>
-
     )
 }
 
