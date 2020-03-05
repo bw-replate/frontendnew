@@ -1,20 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
 
-const HeaderNav = ({loggedInUser}) => {
-  const [curUser, setCurUser]= useState(loggedInUser);
+const HeaderNav = () => {
+  const history= useHistory().location;
+  const loggedInUser= window.localStorage.getItem('loggedInUser');
 
   useEffect(() => {
-    loggedInUser ? setCurUser(loggedInUser) : setCurUser('');
-  }, [loggedInUser]);
+
+  }, [history]);
 
   return (
     <>
       <nav>
         <div className="nav-links">
           <NavLink to='/'>Home</NavLink>
-          <NavLink to='/logout'>Logout</NavLink>
-          {loggedInUser && <NavLink to={`/profile/:${curUser}`}>Welcome, {curUser}
+          {loggedInUser && <NavLink to='/logout'>Logout</NavLink>}
+          {loggedInUser && <NavLink to={`/profile/:${loggedInUser}`}>Welcome, {loggedInUser}
           </NavLink>}
         </div>
       </nav>
