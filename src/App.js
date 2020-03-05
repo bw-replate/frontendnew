@@ -12,7 +12,7 @@ import Profile from "./components/Profile/Profile";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import { axiosWithAuth } from './utils/axiosWithAuth';
-import EditPlate from './components/Profile/Business/';
+import EditPlate from './components/Profile/Business/EditPlate';
 
 import { EditCurrentPickups } from "./components/Profile/Volunteer/EditCurrentPickups";
 import { AvailablePickups } from "./components/Profile/Volunteer/AvailablePickups";
