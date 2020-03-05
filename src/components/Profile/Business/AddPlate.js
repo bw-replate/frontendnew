@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 
 const AddPlate = ({ values, touched, errors, status }) => {
-  const [plate, addPlate] = useState("");
+  const [plate, addPlate] = useState()
   
 
   useEffect(() => {
@@ -42,8 +42,8 @@ const AddPlate = ({ values, touched, errors, status }) => {
         {touched.businessId && errors.businessId && (
           <p className="errors">{errors.businessId}</p>
         )}
-      </Form>
-      <button type="submit">Add Plate</button>
+        <button type="submit">Add Plate</button>
+      </Form>   
     </div>
   );
 };
@@ -51,10 +51,10 @@ const AddPlate = ({ values, touched, errors, status }) => {
 const FormikAddPlateForm = withFormik({
     mapPropsToValues({amount, type, time, businessId }) {
       return {
-        type: type,
-        amount: amount,
-        time: time,
-        businessId: businessId
+        type: type || '',
+        amount: amount || '',
+        time: time || '',
+        businessId: businessId || ''
       };
     },
 
