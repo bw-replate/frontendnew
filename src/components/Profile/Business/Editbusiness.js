@@ -85,6 +85,7 @@ function EditBusiness() {
             placeholder="Name of Business"
           />
         <button type="submit">Update</button>
+        <button type= 'button' onClick= {() => {history.push('/profile')}}>cancel</button>
       </form>
     </div>
   );
