@@ -50,6 +50,7 @@ function App() {
   //for Log in page
   useEffect(() => {
     setLoggedInUser(window.localStorage.getItem('loggedInUser') ? ' ' + window.localStorage.getItem('loggedInUser') : '');
+    console.log("LOGGED IN USER", loggedInUser);
   }, [loggedInUser]);
 
 
@@ -94,7 +95,7 @@ function App() {
     history.push('/editbusiness')
 
   }//end editBusiness
-  console.log(loggedInUser)
+  
   return (
     <div className="App">
       <UserContext.Provider value={{
@@ -105,7 +106,7 @@ function App() {
         deleteBusiness,
         editBusiness,
         businessToEdit,
-        getBusinesses
+        getBusinesses,
       }}>
         <Route path='/'><Header loggedInUser={loggedInUser} /></Route>
 
@@ -129,6 +130,8 @@ function App() {
           <AvailablePickups/>
         </Route>
 
+        <Route path="/viewpickup/:id"><AcceptPickup/></Route>
+
         <Route path="/logout">
           <h2 className="mainHeadingLogout">See You At Your Next Replate</h2>
           <Logout setLoggedInUser={setLoggedInUser} />
@@ -144,13 +147,7 @@ function App() {
             <FormikAddPlateForm/>
           </Route>
 
-          <Route path="/availablepickups/">
-            <h2 className="mainHeadingAddPlate">Available Pickups</h2>
-            <AvailablePickups/>
-          </Route>
-
-      
-          <Route path="/viewpickup/:id"><AcceptPickup/></Route>
+          
           <Route path="/business/:username" component={Business} />
           <Route exact path="/addbusiness" component={FormikAddBusiness} />
           <Route exact path= '/editbusiness'>
