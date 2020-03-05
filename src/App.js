@@ -48,7 +48,7 @@ function App() {
   }, [loggedInUser]);
 
 
-  // for business profile
+  //for business profile
   const getBusinesses= () => {
     console.log('getBusinesses');
     axiosWithAuth()
@@ -115,6 +115,11 @@ function App() {
         <Route path="/profile">
           <h1 className="mainHeadingProfile">Replate</h1>
           <Profile />
+        </Route>
+
+        <Route path="/availablepickups">
+          <h1 className="mainHeadingAddPlate">AvailablePickups</h1>
+          <AvailablePickups/>
         </Route>
 
         <Route path="/logout">

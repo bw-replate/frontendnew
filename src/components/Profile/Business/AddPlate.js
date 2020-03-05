@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import { NavLink, useHistory } from "react-router-dom";
 import * as Yup from "yup";
+import axios from 'axios';
 
-//utils
-import { axiosWithAuth } from '../../../utils/axiosWithAuth';
+
+ import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 
 const AddPlate = ({ values, touched, errors, status }) => {
-  const [plate, addPlate] = useState()
+  const [plate, addPlate] = useState("")
   
 
   useEffect(() => {
@@ -48,14 +49,15 @@ const AddPlate = ({ values, touched, errors, status }) => {
 };
 
 const FormikAddPlateForm = withFormik({
-    mapPropsToValues({amount, type, time, businessId }) {
-      return {
-        type: type || '',
-        amount: amount || '',
-        time: time || '',
-        businessId: businessId || ''
-      };
-    },
+  mapPropsToValues({ amount, type, preferredPickupTime, business_id }) {
+    console.log("This is amount", amount);
+    return {
+      type: type || "",
+      amount: amount || "",
+      time: preferredPickupTime || "",
+      businessId: business_id || ""
+    };
+  },
 
   validationSchema: Yup.object().shape({
     businessId: Yup.string().required(),
@@ -64,23 +66,27 @@ const FormikAddPlateForm = withFormik({
     time: Yup.string().required()
   }),
 
-    handleSubmit(values, { setStatus, resetForm, setSubmitting }) {
+  handleSubmit(values, { setStatus, resetForm, setSubmitting }) {
+    console.log("submitting", values);
 
-        console.log('submitting', values);
-
-      //send submitted values
-      axiosWithAuth()
-        .post("https://bw-replate-1.herokuapp.com/api/pickupRequest", values)
-        .then(response => {
-          console.log("success", response);
-          setStatus(response);
-          resetForm();
-        })
-        .catch(err => {
-          setStatus('error');
-          console.log('Error: ', err);
-        });
-    }//end handleSubmit
+    //send submitted values
+    axiosWithAuth()
+      .post("https://bw-replate-1.herokuapp.com/api/pickupRequest", values)
+      .then(response => {
+        console.log("success", response);
+        setStatus(response);
+        resetForm();
+      })
+      
+      .catch(err => {
+        setStatus("error");
+        console.log("Error: ", err);
+      });
+  } //end handleSubmit
 })(AddPlate);
 
 export default FormikAddPlateForm;
+
+
+
+

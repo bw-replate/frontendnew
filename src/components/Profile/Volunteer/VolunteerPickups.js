@@ -17,6 +17,7 @@ export const VolunteerPickups = () => {
             <h2>Pickup 2</h2>
             <NavLink to="/availablepickups"><button>View or Get Pickups</button></NavLink>
             {/* <NavLink>View or Get New Pickups</NavLink> */}
+            
         </div>
     )
 }
