@@ -2,12 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { withFormik, Form, Field } from 'formik';
 import {axiosWithAuth} from '../../utils/axiosWithAuth';
 import * as Yup from 'yup';
+import {useHistory} from 'react-router-dom';
 
 function AddBusiness ({ errors, touched, status, values }) {
     const [users, setUsers] = useState([]);
+    const history= useHistory();
+
+    const handleFinished= () => {
+      history.push('/profile');
+    }//end handleFinished
 
     useEffect(() =>{
         status && setUsers(address => [...address, status]);
+        
     }, [status])
     return (
         <div className="business-address">
@@ -50,6 +57,7 @@ function AddBusiness ({ errors, touched, status, values }) {
                 </label>
                 <button type="submit">Update</button>
             </Form>
+            <button onClick= {() => handleFinished()}>Finished</button>
             {users.map(user => {
                 return (
                     <ul key={user.id}>
@@ -80,6 +88,7 @@ const FormikAddBusiness = withFormik({
                 .post('https://bw-replate-1.herokuapp.com/api/business/',values)
                 .then(res => {
                     setStatus(res.data);
+                    console.log('addBusinessRes: ', res);
                     resetForm();
                 })
                 .catch(err => console.log(err.response))
