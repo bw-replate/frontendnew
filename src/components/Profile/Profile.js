@@ -20,7 +20,8 @@ const Profile = ({ loggedInUser }) => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get('https://bw-replate-1.herokuapp.com/api/volunteer/stacey')
+
+      .get(`https://bw-replate-1.herokuapp.com/api/volunteer/${user}`)
       .then(res => {
         setVolunteers(res.data);
       })
@@ -33,6 +34,8 @@ const Profile = ({ loggedInUser }) => {
     <div className="profileCont">
       <Business />
       <h2>{user}</h2>
+
+      <h3>{address}</h3>
       <h3>{phoneNumber}</h3>
       <NavLink to="/addbusiness"><button>Add Business</button></NavLink>
       <Link to={`/business/${curUser}`}><button>Business Profiles</button></Link>
@@ -40,7 +43,7 @@ const Profile = ({ loggedInUser }) => {
       <button>Delete Profile</button>
       <button>Edit Profile</button>
 
-      {volunteers.map(volunteer => {
+      {/* {volunteers.map(volunteer => {
         return (
           <div key={Date.now() * Math.random()} className="volunteers">
             <h2>Volunteer Name: {volunteer.username}</h2>
@@ -48,7 +51,7 @@ const Profile = ({ loggedInUser }) => {
             <h2>Volunteer id: {volunteer.id}</h2>
           </div>
         )
-      })}
+      })} */}
 
       {/* if the person logged in is a volunteer 
     then render the code below */}
@@ -58,6 +61,10 @@ const Profile = ({ loggedInUser }) => {
       {/* else if the person logged in is a businees
     then render the code below */}
 
+      <VolunteerPickups />
+
+      {/* else if the person logged in is a businees
+    then render the code below */}
     </div>
   );
 }; // end Profile

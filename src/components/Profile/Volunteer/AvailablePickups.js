@@ -7,6 +7,10 @@ import "./volunteer.css";
 export const AvailablePickups = () => {
   const [pickups, setPickups] = useState([]);
 
+  function addToVolProfile(){
+    
+  }
+
   useEffect(() => {
     axiosWithAuth()
       .get("https://bw-replate-1.herokuapp.com/api/pickupRequest")
@@ -24,7 +28,7 @@ export const AvailablePickups = () => {
             <h2>Food Type: {pickup.type}</h2>
             <h2>Amount: {pickup.amount}</h2>
             <h2>Pickup Time: {pickup.preferredPickupTime}</h2>
-            <button>Accept</button>
+            <NavLink to="/acceptPickup"><button>Accept{pickup.id}</button></NavLink>
             <button>Completed</button>
             <button>Delete</button>
           </div>

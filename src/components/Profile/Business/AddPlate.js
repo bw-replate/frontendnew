@@ -15,22 +15,22 @@ const AddPlate = ({ values, touched, errors, status }) => {
 
   return (
     <div className="addPlateForm">
-      <Form>
-        <label htmlFor="type">Type</label>
+      <Form style={{width: '50%', margin: '0 auto', background: 'blue', borderRadius: '50%'}}>
+        <label htmlFor="type" style={{textAlign: 'center'}}>Type</label>
         <Field id="type" type="text" name="type" placeholder="type" />
         {touched.type && errors.type && <p className="errors">{errors.type}</p>}
 
-        <label htmlFor="amount">Amount</label>
+        <label htmlFor="amount" style={{textAlign: 'center'}}>Amount</label>
         <Field id="amount" type="text" name="amount" placeholder="amount" />
         {touched.amount && errors.amount && (
           <p className="errors">{errors.amount}</p>
         )}
 
-        <label htmlFor="preferredPickupTime">Preferred Pickup Time</label>
+        <label htmlFor="preferredPickupTime" style={{textAlign: 'center'}}>Preferred Pickup Time</label>
         <Field id="preferredPickupTime" type="text" name="preferredPickupTime" placeholder="pickup time" />
         {touched.preferredPickupTime && errors.preferredPickupTime && <p className="errors">{errors.preferredPickupTime}</p>}
 
-        <label htmlFor="id">Business Id</label>
+        <label htmlFor="id" style={{textAlign: 'center'}}>Business Id</label>
         <Field
           id="businessId"
           type="text"
@@ -40,8 +40,8 @@ const AddPlate = ({ values, touched, errors, status }) => {
         {touched.businessId && errors.businessId && (
           <p className="errors">{errors.businessId}</p>
         )}
-        <button type="submit">Add Plate</button>
-      </Form>
+        <button type="submit" style={{margin: '0 auto'}}>Add Plate</button>
+      </Form>   
       {plate.map((item, index) => {
         return (
           <ul key={index}>
@@ -57,6 +57,7 @@ const AddPlate = ({ values, touched, errors, status }) => {
 
 const FormikAddPlateForm = withFormik({
 
+<<<<<<< HEAD
   mapPropsToValues({ amount, type, businessId }) {
     return {
       type: type || '',
@@ -65,6 +66,16 @@ const FormikAddPlateForm = withFormik({
       businessId: businessId || ''
     };
   },
+=======
+    mapPropsToValues({amount, type, preferredPickupTime, businessId }) {
+      return {
+        type: type || '',
+        amount: amount || '',
+        preferredPickupTime: Date.now(),
+        businessId: businessId || ''
+      };
+    },
+>>>>>>> 057a4778104b6df101b6baf8c775a71fcf15880d
 
 
   validationSchema: Yup.object().shape({
