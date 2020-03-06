@@ -1,10 +1,8 @@
-import React,{useState, useEffect} from 'react';
-import axios from 'axios';
-import { Route, NavLink } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 //imports
 import "./volunteer.css";
-
 
 export const VolunteerPickups = () => {
 

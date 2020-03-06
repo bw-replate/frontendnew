@@ -12,7 +12,6 @@ const Registration = ({ values, errors, touched, status }) => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    console.log('status: ', status);
     if (typeof status === 'object' && status !== undefined) {
       status && values.setCreateUser({
         ...values.createUser, ...status
@@ -24,11 +23,9 @@ const Registration = ({ values, errors, touched, status }) => {
       setMessage('That user already exists');
     }
 
-  }, [status])
+  }, [status, values])
   return (
     <div className="user-form">
-
-      {console.log('user: ', values.createUser)}
       { // if there are errors show them
         isError ? <Error className='error'>{message}</Error> :
           //if theres a message but no errors its a succes message, show it
@@ -69,8 +66,8 @@ const Registration = ({ values, errors, touched, status }) => {
 
         <button type="submit"  style={{margin: '0 auto' }}>Register</button>
       </Form>
-      
-      <p>Already have an account? <Link to= '/'>Log in</Link></p>
+
+      <p>Already have an account? <Link to='/'>Log in</Link></p>
 
       { //if successful registration show button to goto log in page 
         message === 'Successful Registration' ? <Link to='/'><button>Log In</button></Link> : null}
@@ -107,7 +104,7 @@ const FormikRegistration = withFormik({
           resetForm();
         }//end if
       })
-      
+
     setStatus('');
   }//end handleSubmit
 })(Registration)

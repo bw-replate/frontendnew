@@ -26,7 +26,7 @@ import FormikAddBusiness from './components/Profile/Business/AddBusiness';
 import "./App.css";
 
 function App() {
-  //signup form state
+  // state
   const [createUser, setCreateUser] = useState({
     username: "",
     password: "",
@@ -34,13 +34,13 @@ function App() {
   });
 
   const [data] = useState({
+
     address: "",
     phoneNumber: "",
     plates: "",
     businesses: ""
   })
 
-  // state
   const [loggedInUser, setLoggedInUser] = useState('');
   const [profiles, setProfiles] = useState([]);
   const [businessToEdit, setBusinessToEdit] = useState({});
@@ -55,14 +55,13 @@ function App() {
 
   //for business profile
   const getBusinesses= () => {
-    console.log('getBusinesses');
     axiosWithAuth()
       .get('https://bw-replate-1.herokuapp.com/api/business')
       .then(res => {
-        setProfiles(res.data)
+        setProfiles(res.data);
       })
       .catch(error => {
-        console.log('err', error)
+        // console.log('err', error);
       })
 
   }//end getBusinesses
@@ -73,16 +72,14 @@ function App() {
   }, [])
 
   const deleteBusiness = (id) => {
-    console.log('delete business');
     axiosWithAuth()
       .delete(`https://bw-replate-1.herokuapp.com/api/business/${id}`)
       .then(delRes => {
-        console.log('delRes', delRes);
-        console.log('id', id);
+        // console.log('delRes', delRes);
         getBusinesses();
       })
       .catch(delErr => {
-        console.log('delError')
+        // console.log('delError')
       })
   }//end deleteBusiness
 
@@ -90,9 +87,7 @@ function App() {
     console.log('Edit business');
     setBusinessToEdit(profile);
     history.push('/editbusiness')
-
   }//end editBusiness
-  
   return (
     <div className="App">
       <UserContext.Provider value={{
