@@ -1,35 +1,9 @@
 // **************** DEFAULT STYLED COMPONENTS **************** //
 // ********************************************************** //
 // ************* vars used form styleVars.js *************** //
-import styled, {createGlobalStyle} from 'styled-components';
+import styled from 'styled-components';
 import {fontStyles, theme} from './styleVars';
 
-const GlobalStyle= createGlobalStyle`
-  *{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  body{
-    font-size: 62.5%; 
-  }
-`;
-
-// **************** CONTAINER **************** //
-  const AppCont= styled.div`
-    position: relative;
-    box-sizing: border-box;
-    margin: 0 auto;
-    padding: 0;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: ${theme.white};
-  `;
 
 // **************** HEADING 1-5 **************** //
 
@@ -81,7 +55,7 @@ const Para= styled.p`
   margin: 5px;
 `;
 
-const Anchor= styled.a`
+const Anchor= styled.div`
   color: ${props => props.color || fontStyles.linkColor};
   font-size: ${props => props.fontSize || fontStyles.linkSize};
   text-decoration: none;
@@ -93,14 +67,18 @@ const Anchor= styled.a`
   }
 `;
 
+const Button= styled.button`
+  background-color: blue;
+  border-radius: 5px;
+`;
+
 export {
-  GlobalStyle,
   Heading1, 
   Heading2, 
   Heading3,
   Heading4,
   Heading5,
   Para,
-  Anchor,
-  AppCont
+  Anchor, 
+  Button
 };

@@ -9,7 +9,9 @@ import { UserContext } from '../../Contexts/UserContext';
 import Business from './Business/Business';
 
 //styles
-import "./ProfileStyles";
+import '../../globalStyles/styleVars';
+import {Heading2, Heading3, Button, Anchor} from '../../globalStyles/globalStyles';
+import {ProfileCont} from "./ProfileStyles";
 import { VolunteerPickups } from "./Volunteer/VolunteerPickups";
 
 const Profile = ({ loggedInUser }) => {
@@ -31,17 +33,18 @@ const Profile = ({ loggedInUser }) => {
   }, [])
 
   return (
-    <div className="profileCont">
+    <ProfileCont className="profileCont">
+
       <Business />
-      <h2>{user}</h2>
 
-      <h3>{address}</h3>
-      <h3>{phoneNumber}</h3>
-      <NavLink to="/addbusiness"><button>Add Business</button></NavLink>
-      <Link to={`/business/${curUser}`}><button>Business Profiles</button></Link>
+      <Heading2>{user}</Heading2>
+      <Heading3>{address}</Heading3>
+      <Heading3>{phoneNumber}</Heading3>
+      <Anchor><NavLink to="/addbusiness"><Button>Add Business</Button></NavLink></Anchor>
+      <Anchor><Link to={`/business/${curUser}`}><Button>Business Profiles</Button></Link></Anchor>
 
-      <button>Delete Profile</button>
-      <button>Edit Profile</button>
+      <Button>Delete Profile</Button>
+      <Button>Edit Profile</Button>
 
       {/* {volunteers.map(volunteer => {
         return (
@@ -65,7 +68,7 @@ const Profile = ({ loggedInUser }) => {
 
       {/* else if the person logged in is a businees
     then render the code below */}
-    </div>
+    </ProfileCont>
   );
 }; // end Profile
 
