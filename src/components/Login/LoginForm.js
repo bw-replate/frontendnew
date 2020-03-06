@@ -45,7 +45,9 @@ const LoginForm = ({ values, touched, errors, status }) => {
   return (
     <div className="userForm">
 
-      {/* if error, show it */
+
+         {/* if error, show it */
+
         isError ? <Error className='error'>{message}</Error> :
         // if success message, show it
         !isError && message ? <Message>{message}</Message> : null

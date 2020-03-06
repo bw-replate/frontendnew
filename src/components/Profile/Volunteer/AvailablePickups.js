@@ -16,7 +16,7 @@ export const AvailablePickups = () => {
     axiosWithAuth()
       .get("https://bw-replate-1.herokuapp.com/api/pickupRequest")
       .then(response => {
-        console.log(response);
+        
         setPickups(response.data);
       });
   }, []);
