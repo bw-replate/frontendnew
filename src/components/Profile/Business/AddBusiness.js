@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../../Contexts/UserContext';
 
-function AddBusiness({ errors, touched, status, values }) {
+function AddBusiness({ errors, touched, status }) {
   const [users, setUsers] = useState([]);
   const history = useHistory();
   const { getBusinesses } = useContext(UserContext);
@@ -86,7 +86,6 @@ const FormikAddBusiness = withFormik({
       .post('https://bw-replate-1.herokuapp.com/api/business', values)
       .then(res => {
         setStatus(res.data);
-        console.log('addBusinessRes: ', res);
         resetForm();
       })
       .catch(err => console.log(err.response))
