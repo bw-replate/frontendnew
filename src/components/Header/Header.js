@@ -1,18 +1,14 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import HeaderNav from './HeaderNav/HeaderNav';
 import logo from "./replateIcon.PNG";
 
-import {UserContext} from '../../Contexts/UserContext';
-
-export default function Header ({}) {
+export default function Header() {
   return (
-    <div className= 'headerCont'>
+    <div className='headerCont'>
       <div>
-        <img src={logo} alt="replate icon"/>
+        <img src={logo} alt="replate icon" />
       </div>
-
-      <HeaderNav/>
-
+      <HeaderNav />
     </div>
   )
 }//end Header
