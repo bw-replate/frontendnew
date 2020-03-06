@@ -50,7 +50,6 @@ function App() {
   //for Log in page
   useEffect(() => {
     setLoggedInUser(window.localStorage.getItem('loggedInUser') ? ' ' + window.localStorage.getItem('loggedInUser') : '');
-    console.log("LOGGED IN USER", loggedInUser);
   }, [loggedInUser]);
 
 
@@ -60,7 +59,6 @@ function App() {
     axiosWithAuth()
       .get('https://bw-replate-1.herokuapp.com/api/business')
       .then(res => {
-        console.log('flag', res)
         setProfiles(res.data)
       })
       .catch(error => {
@@ -75,7 +73,6 @@ function App() {
   }, [])
 
   const deleteBusiness = (id) => {
-    // console.log('id', id);
     console.log('delete business');
     axiosWithAuth()
       .delete(`https://bw-replate-1.herokuapp.com/api/business/${id}`)

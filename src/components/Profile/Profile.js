@@ -68,9 +68,7 @@ const Profile = ({loggedInUser}) => {
       {/* if the person logged in is a volunteer 
     then render the code below */}
        {/* profile editing form */}
-       {editing && <ProfileEdit 
-        volunteerToEdit= {volunteerToEdit}
-       />}
+      
 
       {/* if the person logged in is a volunteer 
     then render the code below */}
