@@ -2,15 +2,14 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 
-
 import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 
-const AddPlate = ({ values, touched, errors, status }) => {
-  const [plate, addPlate] = useState([])
+const AddPlate = ({ touched, errors, status }) => {
+const [plate, addPlate] = useState([])
 
 
   useEffect(() => {
-    status && addPlate(plate => [...plate, status]);
+      status && addPlate(plate => [...plate, status]);
   }, [status]);
 
   return (
@@ -56,15 +55,15 @@ const AddPlate = ({ values, touched, errors, status }) => {
 };
 
 const FormikAddPlateForm = withFormik({
-
-  mapPropsToValues({ amount, type, preferredPickupTime, businessId }) {
-    return {
-      type: type || '',
-      amount: amount || '',
-      preferredPickupTime: Date.now(),
-      businessId: businessId || ''
-    };
-  },
+  
+    mapPropsToValues({amount, type, businessId }) {
+      return {
+        type: type || '',
+        amount: amount || '',
+        preferredPickupTime: Date.now(),
+        businessId: businessId || ''
+      };
+    },
 
   validationSchema: Yup.object().shape({
     businessId: Yup.string().required(),
@@ -72,6 +71,7 @@ const FormikAddPlateForm = withFormik({
     type: Yup.string().required(),
     preferredPickupTime: Yup.string().required()
   }),
+
 
   handleSubmit(values, { setStatus, resetForm }) {
 
@@ -87,6 +87,7 @@ const FormikAddPlateForm = withFormik({
         setStatus('error');
       });
   }//end handleSubmit
+
 
 })(AddPlate);
 

@@ -33,7 +33,8 @@ function App() {
     phoneNumber: ""
   });
 
-  const [data,] = useState({
+  const [data] = useState({
+
     address: "",
     phoneNumber: "",
     plates: "",

@@ -1,9 +1,9 @@
+
 import React from 'react'
 import { withRouter } from 'react-router-dom';
 
 //imports
 import BusinessProfile from './BusinessProfile';
-
 
 //styles
 import { BusinessCont } from './BusinessStyles';
