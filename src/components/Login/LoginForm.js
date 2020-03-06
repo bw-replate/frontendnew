@@ -3,10 +3,8 @@ import { withFormik, Form, Field } from 'formik';
 import {Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 
-
 //utils
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
-
 
 //stlyles
 import { Error, Message } from './LoginStyles';
@@ -23,8 +21,6 @@ const LoginForm = ({ values, touched, errors, status }) => {
   }
 
   useEffect(() => {
-    
-    // status && console.log("status message:", status.message.slice(8));
     //if status contains a response, and is not undefined... proceed
     if (typeof status === 'object' && status !== undefined) {
       setIsError(false);
@@ -49,7 +45,9 @@ const LoginForm = ({ values, touched, errors, status }) => {
   return (
     <div className="userForm">
 
+
          {/* if error, show it */
+
         isError ? <Error className='error'>{message}</Error> :
         // if success message, show it
         !isError && message ? <Message>{message}</Message> : null
@@ -79,8 +77,6 @@ const LoginForm = ({ values, touched, errors, status }) => {
         <button type="submit">Login</button>
       </Form>
       <p>Don't have an account? <Link to= '/signup'>Create an account</Link></p>
-      
-
     </div>
   );
 };
@@ -107,7 +103,7 @@ const FormikLoginForm = withFormik({
       .then(response => {
         console.log("success", response.data);
         setStatus(response.data);
-        // resetForm();
+        resetForm();
       })
       .catch(err => {
         setStatus('error');
