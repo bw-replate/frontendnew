@@ -6,12 +6,14 @@ import { withRouter } from 'react-router-dom';
 import BusinessProfile from './BusinessProfile';
 
 //styles
+import '../../../globalStyles/styleVars';
+import {Heading2, Heading3, Button, Anchor} from '../../../globalStyles/globalStyles';
 import { BusinessCont } from './BusinessStyles';
 
 const Business = () => {
   return (
     <BusinessCont className="businessCont">
-      <h3>Business Profile</h3>
+      <Heading3>Business Profile</Heading3>
       <BusinessProfile />
     </BusinessCont>
   )

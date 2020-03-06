@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom';
 import { UserContext } from '../../../Contexts/UserContext';
 
 //styles
+import '../../../globalStyles/styleVars';
+import {Heading2, Heading3, Button, Anchor} from '../../../globalStyles/globalStyles';
 import { BusinessDisplay } from './BusinessStyles';
 
 function BusinessProfile() {
@@ -12,17 +14,17 @@ function BusinessProfile() {
 
   return (
     <div>
-      <Link to='/addplate'>Add A Plate</Link>
-      <h2>Current Plates</h2>
-      businesses:
+      <Anchor><Link to='/addplate'>Add A Plate</Link></Anchor>
+      <Heading2>Current Plates</Heading2>
+      <Heading3>businesses:</Heading3>
             {profiles && profiles.map(profile => (
         <BusinessDisplay key={Date.now() * Math.random()} className='businessDisplay'>
-          <h3>{profile.name}</h3>
-          <h3>{profile.address}</h3>
-          <h3>{profile.phoneNumber}</h3>
-          <h3>{profile.username}</h3>
-          <button onClick={() => editBusiness(profile)}>Edit</button>
-          <button onClick={() => deleteBusiness(profile.id)}>Delete</button>
+          <Heading3>{profile.name}</Heading3>
+          <Heading3>{profile.address}</Heading3>
+          <Heading3>{profile.phoneNumber}</Heading3>
+          <Heading3>{profile.username}</Heading3>
+          <Button onClick={() => editBusiness(profile)}>Edit</Button>
+          <Button onClick={() => deleteBusiness(profile.id)}>Delete</Button>
         </ BusinessDisplay>
       ))}
     </div>
