@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 
 //styles
+import '../../../globalStyles/styleVars';
+import {Anchor} from '../../../globalStyles/globalStyles';
 // import './HeaderStyles';
 
 const HeaderNav = () => {
@@ -16,10 +18,10 @@ const HeaderNav = () => {
     <>
       <nav>
         <div className="nav-links">
-          <NavLink to='/'>Home</NavLink>
-          {loggedInUser && <NavLink to='/logout'>Logout</NavLink>}
-          {loggedInUser && <NavLink to={`/profile/:${loggedInUser}`}>Welcome, {loggedInUser}
-          </NavLink>}
+          <Anchor><NavLink to='/'>Home</NavLink></Anchor>
+          {loggedInUser && <Anchor><NavLink to='/logout'>Logout</NavLink></Anchor>}
+          {loggedInUser && <Anchor><NavLink to={`/profile/:${loggedInUser}`}>Welcome, {loggedInUser}
+          </NavLink></Anchor>}
         </div>
       </nav>
     </>

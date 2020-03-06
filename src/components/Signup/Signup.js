@@ -5,7 +5,9 @@ import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 
 //styles
-import { Error, Message } from './SignupStyles';
+import '../../globalStyles/styleVars';
+import {Anchor, Button} from '../../globalStyles/globalStyles';
+import { Error, Message, ExistingAccount } from './SignupStyles';
 
 const Registration = ({ values, errors, touched, status }) => {
   const [isError, setIsError] = useState(false);
@@ -25,7 +27,7 @@ const Registration = ({ values, errors, touched, status }) => {
 
   }, [status, values])
   return (
-    <div className="user-form">
+    <div style={{textAlign: 'center'}} className="user-form">
       { // if there are errors show them
         isError ? <Error className='error'>{message}</Error> :
           //if theres a message but no errors its a succes message, show it
@@ -64,13 +66,16 @@ const Registration = ({ values, errors, touched, status }) => {
           {touched.phoneNumber && errors.phoneNumber && (<p className="errors">{errors.phoneNumber}</p>)}
         </label>
 
-        <button type="submit"  style={{margin: '0 auto' }}>Register</button>
+        <Button type="submit"  style={{margin: '0 auto' }}>Register</Button>
+        <ExistingAccount>Already have an account? 
+        <Anchor>
+          <Link to='/'>Log in</Link>
+        </Anchor>
+      </ExistingAccount>
       </Form>
 
-      <p>Already have an account? <Link to='/'>Log in</Link></p>
-
       { //if successful registration show button to goto log in page 
-        message === 'Successful Registration' ? <Link to='/'><button>Log In</button></Link> : null}
+        message === 'Successful Registration' ? <Anchor><Link to='/'><button>Log In</button></Link></Anchor> : null}
     </div>
   );
 };

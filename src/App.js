@@ -23,6 +23,8 @@ import FormikAddPlateForm from "./components/Profile/Business/AddPlate";
 import FormikAddBusiness from './components/Profile/Business/AddBusiness';
 
 //styles
+import './globalStyles/styleVars';
+import {Heading1,Heading2} from './globalStyles/globalStyles';
 import "./App.css";
 
 function App() {
@@ -105,29 +107,29 @@ function App() {
         <Route path='/'><Header loggedInUser={loggedInUser} /></Route>
 
         <Route path="/signup">
-          <h2 className="mainHeadingSignUp" style={{textAlign: 'center', fontSize: '3rem'}}> Register Below </h2>
+          <Heading2> Register Below </Heading2>
           <FormikRegistration createUser={createUser} setCreateUser={setCreateUser} />
         </Route>
 
         <Route exact path="/">
-          <h1 className="mainHeading"> Replate </h1>
+          <Heading1> Replate </Heading1>
           <Login />
         </Route>
 
         <Route path="/profile">
-          <h1 className="mainHeadingProfile">Replate</h1>
+          <Heading2>Replate</Heading2>
           <Profile loggedInUser={loggedInUser} />
         </Route>
 
         <Route path="/availablepickups">
-          <h1 className="mainHeadingAddPlate">AvailablePickups</h1>
+          <Heading2>AvailablePickups</Heading2>
           <AvailablePickups/>
         </Route>
 
         <Route path="/viewpickup/:id"><AcceptPickup/></Route>
 
         <Route path="/logout">
-          <h2 className="mainHeadingLogout">See You At Your Next Replate</h2>
+          <Heading2>See You At Your Next Replate</Heading2>
           <Logout setLoggedInUser={setLoggedInUser} />
         </Route>
 
@@ -137,7 +139,7 @@ function App() {
 
 
           <Route path="/addplate">
-            <h2 className="mainHeadingAddPlate">Add A Plate</h2>
+            <Heading2>Add A Plate</Heading2>
             <FormikAddPlateForm/>
           </Route>
 

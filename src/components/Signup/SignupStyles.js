@@ -10,4 +10,8 @@ const Message= styled.p`
   font-size: 1rem;
 `;
 
-export {Error, Message};
+const ExistingAccount= styled.p`
+  
+`;
+
+export {ExistingAccount,Error, Message};
