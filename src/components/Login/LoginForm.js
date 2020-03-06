@@ -7,6 +7,8 @@ import * as Yup from 'yup';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 //stlyles
+import '../../globalStyles/styleVars';
+import {Button} from '../../globalStyles/globalStyles';
 import { Error, Message } from './LoginStyles';
 
 const LoginForm = ({ values, touched, errors, status }) => {
@@ -73,7 +75,7 @@ const LoginForm = ({ values, touched, errors, status }) => {
         {touched.password && errors.password && (
           <p className="errors">{errors.password}</p>
         )}
-        <button type="submit">Login</button>
+        <Button type="submit">Login</Button>
       </Form>
       <p>Don't have an account? <Link to='/signup'>Create an account</Link></p>
     </div>

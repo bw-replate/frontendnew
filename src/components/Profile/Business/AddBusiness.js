@@ -8,7 +8,7 @@ import { UserContext } from '../../../Contexts/UserContext';
 function AddBusiness({ errors, touched, status }) {
   const [users, setUsers] = useState([]);
   const history = useHistory();
-  const { getBusinesses } = useContext(UserContext);
+  const {loggedInUser, getBusinesses } = useContext(UserContext);
 
   const handleFinished = () => {
     history.push(`/profile`);
@@ -23,7 +23,7 @@ function AddBusiness({ errors, touched, status }) {
     <div className="business-address" style={{textAlign: 'center'}}>
       <Form style={{width: '50%', background: 'yellow', margin: '0 auto' }}>
         <label htmlFor='username'>Username</label>
-        <Field
+        <Field style= {{backgroundColor: '#eeeeee'}}
           id="username"
           type="text"
           name="username"
@@ -82,6 +82,7 @@ const FormikAddBusiness = withFormik({
     name: Yup.string().required()
   }),
   handleSubmit(values, { setStatus, resetForm }) {
+    console.log('values: ', values);
     axiosWithAuth()
       .post('https://bw-replate-1.herokuapp.com/api/business', values)
       .then(res => {

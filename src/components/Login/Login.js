@@ -2,6 +2,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 //styles
+import '../../globalStyles/styleVars';
+import {Heading1} from '../../globalStyles/globalStyles';
 import { StyledDiv } from './LoginStyles';
 import './login.css';
 
@@ -13,7 +15,7 @@ function Login() {
   return (
     <div>
       <StyledDiv>
-        <h1 className="mainFormHeading">Login Below</h1>
+        <Heading1>Login Below</Heading1>
       </StyledDiv>
       <FormikLoginForm />
     </div>
