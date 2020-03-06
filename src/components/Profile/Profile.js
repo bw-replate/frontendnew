@@ -13,7 +13,7 @@ import "./ProfileStyles";
 import { VolunteerPickups } from "./Volunteer/VolunteerPickups";
 
 const Profile = ({ loggedInUser }) => {
-  const { phoneNumber } = useContext(UserContext);
+  const { address,phoneNumber } = useContext(UserContext);
   const [curUser] = useState(loggedInUser.replace(/\s/g, ""));
   let user = window.localStorage.getItem('loggedInUser');
   const [volunteers, setVolunteers] = useState([]);
