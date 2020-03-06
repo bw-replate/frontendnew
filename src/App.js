@@ -6,7 +6,6 @@ import { UserContext } from "./Contexts/UserContext";
 
 //imports
 import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
 import FormikRegistration from "./components/Signup/Signup";
 import Profile from "./components/Profile/Profile";
 import Login from "./components/Login/Login";
@@ -34,7 +33,7 @@ function App() {
     phoneNumber: ""
   });
 
-  const [data, setData] = useState({
+  const [data] = useState({
     address: "",
     phoneNumber: "",
     plates: "",
